@@ -19,3 +19,8 @@ story/*.json -text
 *.mp3 binary
 *.exe binary
 *.dll binary
+
+# Planning documents (binary archives).
+*.xlsx binary
+*.docx binary
+*.pptx binary
