@@ -59,7 +59,7 @@ func _setup_input() -> void:
 	var bindings = {
 		"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT],
 		"move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN],
-		"interact": [KEY_E], "journal": [KEY_J], "pause_game": [KEY_ESCAPE],
+		"interact": [KEY_E], "journal": [KEY_J], "menu": [KEY_TAB], "pause_game": [KEY_ESCAPE],
 		"advance_dialogue": [KEY_SPACE, KEY_ENTER],
 		"toggle_fullscreen": [KEY_F11]
 	}
@@ -127,8 +127,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("pause_game"):
 		hud.toggle_pause()
-	elif event.is_action_pressed("journal"):
-		hud.toggle_journal()
+	elif event.is_action_pressed("menu") or event.is_action_pressed("journal"):
+		hud.toggle_tab_menu()
 	elif hud.is_dialogue_open():
 		if event.is_action_pressed("interact") or event.is_action_pressed("advance_dialogue"):
 			hud.advance_dialogue()

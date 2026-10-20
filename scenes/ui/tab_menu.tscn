@@ -1,0 +1,264 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/tab_menu.gd" id="1_script"]
+[ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/ui/parchment.png" id="3_parchment"]
+[ext_resource type="Texture2D" path="res://assets/ui/book_low.png" id="4_book_low"]
+[ext_resource type="Texture2D" path="res://assets/ui/book_top.png" id="5_book_top"]
+[ext_resource type="Texture2D" path="res://assets/ui/page_triangle.png" id="6_triangle"]
+
+[sub_resource type="Gradient" id="GradientFadeTop"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(0.91, 0.867, 0.776, 1, 0.91, 0.867, 0.776, 0)
+
+[sub_resource type="GradientTexture2D" id="TextureFadeTop"]
+gradient = SubResource("GradientFadeTop")
+width = 8
+height = 64
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="GradientFadeBottom"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(0.91, 0.867, 0.776, 0, 0.91, 0.867, 0.776, 1)
+
+[sub_resource type="GradientTexture2D" id="TextureFadeBottom"]
+gradient = SubResource("GradientFadeBottom")
+width = 8
+height = 64
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="MapFrame"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.66, 0.59, 0.49, 1)
+
+[node name="TabMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Parchment" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("3_parchment")
+expand_mode = 1
+
+[node name="BookLow" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("4_book_low")
+expand_mode = 1
+
+[node name="Tabs" type="Control" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Tasks" type="TextureRect" parent="Tabs"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 149.0
+offset_right = 190.0
+offset_bottom = 196.0
+texture = ExtResource("5_book_top")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Tabs/Tasks"]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 47.0
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "任务"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map" type="TextureRect" parent="Tabs"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 205.0
+offset_right = 190.0
+offset_bottom = 252.0
+texture = ExtResource("5_book_top")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Tabs/Map"]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 47.0
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "地图"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BookTop" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("5_book_top")
+expand_mode = 1
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Tasks" type="Control" parent="Pages"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 122.0
+offset_right = 479.0
+offset_bottom = 164.0
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 30
+text = "任务日志"
+
+[node name="Rule" type="ColorRect" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 171.0
+offset_right = 429.0
+offset_bottom = 172.0
+mouse_filter = 2
+color = Color(0.78, 0.72, 0.62, 1)
+
+[node name="Clip" type="Control" parent="Pages/Tasks"]
+clip_contents = true
+layout_mode = 0
+offset_left = 179.0
+offset_top = 184.0
+offset_right = 600.0
+offset_bottom = 483.0
+mouse_filter = 2
+
+[node name="Bounce" type="Control" parent="Pages/Tasks/Clip"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Text" type="RichTextLabel" parent="Pages/Tasks/Clip/Bounce"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("2_theme")
+bbcode_enabled = true
+scroll_following = false
+
+[node name="FadeTop" type="TextureRect" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 184.0
+offset_right = 600.0
+offset_bottom = 203.0
+mouse_filter = 2
+texture = SubResource("TextureFadeTop")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="FadeBottom" type="TextureRect" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 464.0
+offset_right = 600.0
+offset_bottom = 483.0
+mouse_filter = 2
+texture = SubResource("TextureFadeBottom")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Arrow" type="TextureRect" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 516.0
+offset_right = 397.0
+offset_bottom = 539.0
+pivot_offset = Vector2(16, 11.5)
+rotation = 3.1415927
+mouse_filter = 2
+texture = ExtResource("6_triangle")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Detail" type="RichTextLabel" parent="Pages/Tasks"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 196.0
+offset_right = 1093.0
+offset_bottom = 540.0
+theme = ExtResource("2_theme")
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Map" type="Control" parent="Pages"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 122.0
+offset_right = 479.0
+offset_bottom = 164.0
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 30
+text = "地图"
+
+[node name="Rule" type="ColorRect" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 171.0
+offset_right = 429.0
+offset_bottom = 172.0
+mouse_filter = 2
+color = Color(0.78, 0.72, 0.62, 1)
+
+[node name="Info" type="RichTextLabel" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 196.0
+offset_right = 579.0
+offset_bottom = 500.0
+theme = ExtResource("2_theme")
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Frame" type="Panel" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 126.0
+offset_right = 1093.0
+offset_bottom = 520.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("MapFrame")

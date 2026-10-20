@@ -8,7 +8,7 @@ signal fullscreen_requested
 signal dialogue_finished(dialogue_id: String)
 
 @onready var dialogue: Control = $Screen/Dialogue
-@onready var journal: PanelContainer = $Screen/Journal
+@onready var tab_menu: DayOneTabMenu = $Screen/TabMenu
 @onready var pause_panel: PanelContainer = $Screen/Pause
 @onready var choices: VBoxContainer = $Screen/Dialogue/Content/Choices
 @onready var transcript: RichTextLabel = $Screen/Dialogue/Content/Text
@@ -32,14 +32,12 @@ func _ready() -> void:
 	scrollbar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	scrollbar.focus_mode = Control.FOCUS_NONE
 	next_button.pressed.connect(advance_dialogue)
-	$Screen/Journal/Content/Close.pressed.connect(toggle_journal)
 	$Screen/Pause/Content/Resume.pressed.connect(toggle_pause)
 	$Screen/Pause/Content/Fullscreen.pressed.connect(func(): fullscreen_requested.emit())
 	$Screen/Pause/Content/Save.pressed.connect(func(): save_requested.emit())
 	$Screen/Pause/Content/Load.pressed.connect(func(): load_requested.emit())
 	$Screen/Pause/Content/Restart.pressed.connect(_confirm_restart)
 	$RestartConfirm.confirmed.connect(func(): restart_requested.emit())
-	GameState.changed.connect(_refresh_journal)
 
 func set_fullscreen_state(fullscreen: bool) -> void:
 	$Screen/Pause/Content/Fullscreen.text = "切换为窗口 / F11" if fullscreen else "切换为全屏 / F11"
@@ -48,7 +46,7 @@ func is_dialogue_open() -> bool:
 	return not active_dialogue_id.is_empty()
 
 func is_modal_open() -> bool:
-	return dialogue.visible or journal.visible or pause_panel.visible or $RestartConfirm.visible
+	return dialogue.visible or tab_menu.is_open() or pause_panel.visible or $RestartConfirm.visible
 
 func start_dialogue(id: String) -> void:
 	if is_modal_open():
@@ -223,20 +221,21 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		select_choice(index)
 		get_viewport().set_input_as_handled()
 
-func toggle_journal() -> void:
+func toggle_tab_menu() -> void:
 	if dialogue.visible or pause_panel.visible or $RestartConfirm.visible:
 		return
-	journal.visible = not journal.visible
-	_refresh_journal()
+	if tab_menu.is_open():
+		tab_menu.close()
+	else:
+		tab_menu.open()
 	_update_blocker()
-	if journal.visible:
-		$Screen/Journal/Content/Close.grab_focus()
 
 func toggle_pause() -> void:
 	if dialogue.visible or $RestartConfirm.visible:
 		return
-	if journal.visible:
-		toggle_journal()
+	if tab_menu.is_open():
+		tab_menu.close()
+		_update_blocker()
 		return
 	pause_panel.visible = not pause_panel.visible
 	_update_blocker()
@@ -247,12 +246,8 @@ func _update_blocker() -> void:
 	blocker.visible = is_modal_open()
 	blocker.color.a = 0.08 if dialogue.visible else 0.3
 
-func _refresh_journal() -> void:
-	if is_instance_valid(journal):
-		$Screen/Journal/Content/Text.text = GameState.journal_text()
-
 func close_panels() -> void:
-	journal.hide()
+	tab_menu.close()
 	pause_panel.hide()
 	_update_blocker()
 
