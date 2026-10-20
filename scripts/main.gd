@@ -109,14 +109,14 @@ func _physics_process(_delta: float) -> void:
 	for item in get_tree().get_nodes_in_group("interactables"):
 		if item is DayOneInteractable:
 			item.set_prompt_enabled(player.control_enabled)
-			item.set_reachable(player.control_enabled and item.is_available() and player.global_position.distance_to(item.global_position) <= item.interaction_distance)
+			item.set_reachable(player.control_enabled and item.is_available() and player.can_reach(item))
 	if player.control_enabled:
 		var nearest = INF
 		for candidate in get_tree().get_nodes_in_group("interactables"):
 			if not candidate is DayOneInteractable or not candidate.is_available():
 				continue
 			var distance = player.global_position.distance_to(candidate.global_position)
-			if distance <= candidate.interaction_distance and distance < nearest:
+			if distance < nearest and player.can_reach(candidate):
 				target = candidate
 				nearest = distance
 	if target != null:
@@ -145,7 +145,7 @@ func _activate_interactable(item: DayOneInteractable) -> void:
 	if transitioning or hud.is_modal_open() or not is_instance_valid(item):
 		return
 	# Recheck on activation so stale UI focus cannot bypass conditions.
-	if not item.is_available() or player.global_position.distance_to(item.global_position) > item.interaction_distance:
+	if not item.is_available() or not player.can_reach(item):
 		return
 	player.control_enabled = false
 	player.velocity = Vector2.ZERO
@@ -179,7 +179,12 @@ func change_location(id: String, spawn: String = "Start", restore_position: bool
 	player.configure_location(current_location)
 	var spawn_position = GameState.player_position if restore_position else current_location.spawn_position(spawn)
 	# Keep existing saves usable when a room's art changes its walkable layout.
-	player.global_position = player.constrain_position(spawn_position)
+	var safe_position = player.constrain_position(spawn_position)
+	if safe_position == Vector2.INF:
+		push_error("No usable ground in location: " + id)
+		return
+	player.global_position = safe_position
+	WorldDepth.at_feet(player, player.global_position.y)
 	player.facing = GameState.facing if restore_position else current_location.spawn_facing(spawn, 1 if id == "courtyard" else -1)
 	if id == "dorm" and spawn == "Start" and not restore_position:
 		player.facing = 1

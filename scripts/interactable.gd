@@ -19,6 +19,11 @@ enum Kind { DIALOGUE, EXIT }
 @export var portrait_outline: PackedVector2Array = PackedVector2Array()
 @export var portrait_height: float = 343.0
 @export var placeholder_person: bool = false
+## Only visible people block the ground; object icons and hidden people do not.
+@export var blocks_walking: bool = true
+@export var foot_radius: Vector2 = Vector2(26, 10)
+## Optional original-image foot anchor for asymmetric poses or carried objects.
+@export var portrait_foot_anchor: Vector2 = Vector2(-1, -1)
 @export var required_flags: Array[String] = []
 @export var hidden_after_flag: String = ""
 @export var interaction_enabled: bool = true
@@ -29,14 +34,14 @@ var prompt_enabled: bool = true
 var reachable: bool = false
 var hovered: bool = false
 var portrait_visual: Node2D
-var protagonist: Node2D
 
 func _ready() -> void:
 	$Marker.position = marker_offset
+	$Marker.z_as_relative = false
+	$Marker.z_index = WorldDepth.MARKER_Z
 	$Art.texture = portrait_texture
 	_fit_portrait()
 	if not Engine.is_editor_hint():
-		protagonist = get_tree().get_first_node_in_group("protagonist")
 		$Marker/Hitbox.pressed.connect(_request_interaction)
 		$Marker/Hitbox.mouse_entered.connect(func(): hovered = true; _update_marker())
 		$Marker/Hitbox.mouse_exited.connect(func(): hovered = false; _update_marker())
@@ -58,6 +63,8 @@ func _fit_portrait() -> void:
 	var location_scale: float = room.player_scale if room is DayOneLocation else 1.0
 	var fit = portrait_height * location_scale / bounds.size.y
 	var foot_anchor = Vector2(bounds.get_center().x, bounds.end.y)
+	if portrait_foot_anchor.x >= 0 and portrait_foot_anchor.y >= 0:
+		foot_anchor = portrait_foot_anchor
 	if not portrait_outline.is_empty():
 		$Art.hide()
 		var cutout = Polygon2D.new()
@@ -73,15 +80,17 @@ func _fit_portrait() -> void:
 		portrait_visual = $Art
 	portrait_visual.position = -foot_anchor * fit
 	portrait_visual.scale = Vector2.ONE * fit
-	portrait_visual.z_index = 1
+	WorldDepth.at_feet(portrait_visual, global_position.y)
 	portrait_visual.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	# The small hand sits next to the shoulder, without covering the face.
 	if placeholder_person:
 		$Marker.position = Vector2(bounds.size.x * fit * 0.5 + 22, -portrait_height * location_scale * 0.62)
 
 func _process(_delta: float) -> void:
-	if is_instance_valid(portrait_visual) and is_instance_valid(protagonist):
-		portrait_visual.z_index = 3 if protagonist.global_position.y < global_position.y else 1
+	if placeholder_person:
+		WorldDepth.at_feet(self, global_position.y)
+	if is_instance_valid(portrait_visual):
+		WorldDepth.at_feet(portrait_visual, global_position.y)
 
 func is_available() -> bool:
 	return interaction_enabled and visible and GameState.meets(required_flags)

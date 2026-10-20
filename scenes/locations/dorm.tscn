@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/location.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/placeholder_background.gd" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="3"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/dorm_room.png" id="4"]
+
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
+
+[ext_resource type="Script" path="res://scripts/scenery_occluder.gd" id="depth"]
 
 [node name="Dorm" type="Node2D"]
 script = ExtResource("1")
@@ -61,11 +65,11 @@ dialogue_id = "inspect_cross"
 marker_offset = Vector2(0, -379)
 
 [node name="Desk" parent="Interactions" instance=ExtResource("3")]
-position = Vector2(285, 654)
+position = Vector2(330, 670)
 interaction_id = "desk"
 display_name = "书桌"
 dialogue_id = "inspect_desk"
-marker_offset = Vector2(0, -204)
+marker_offset = Vector2(-45, -220)
 
 [node name="ToCourtyard" parent="Interactions" instance=ExtResource("3")]
 position = Vector2(1185, 654)
@@ -80,3 +84,40 @@ marker_offset = Vector2(0, -259)
 [node name="Foreground" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(640, 360)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(145, 641, 1220, 641, 1220, 702, 145, 702)
+
+[node name="DeskStool" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(193, 622, 279, 622, 288, 657, 191, 657)
+
+[node name="Occlusion" type="Node2D" parent="."]
+
+[node name="StoolSeat" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("4")
+polygon = PackedVector2Array(190, 529, 289, 529, 289, 541, 190, 541)
+uv = PackedVector2Array(570, 1587, 867, 1587, 867, 1623, 570, 1623)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 657
+
+[node name="StoolLeftLeg" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("4")
+polygon = PackedVector2Array(201, 541, 216, 541, 210, 655, 193, 655)
+uv = PackedVector2Array(603, 1623, 648, 1623, 630, 1965, 579, 1965)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 657
+
+[node name="StoolRightLeg" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("4")
+polygon = PackedVector2Array(260, 541, 275, 541, 287, 655, 273, 655)
+uv = PackedVector2Array(780, 1623, 825, 1623, 861, 1965, 819, 1965)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 657

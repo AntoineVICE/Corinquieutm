@@ -9,9 +9,8 @@
 resource_local_to_scene = true
 shader = ExtResource("5_clarity")
 shader_parameter/amount = 0.55
-[sub_resource type="CapsuleShape2D" id="Body"]
-radius = 36.0
-height = 325.0
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(68, 16)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -24,21 +23,20 @@ walk_frames = ExtResource("4_walk")
 art_scale = 0.26
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(0, -162.5)
 shape = SubResource("Body")
 
 [node name="Art" type="Node2D" parent="."]
 scale = Vector2(0.26, 0.26)
 [node name="Idle" type="Sprite2D" parent="Art"]
 texture_filter = 2
-position = Vector2(-720, -1991)
+position = Vector2(-652, -1991)
 texture = ExtResource("2_idle_right")
 centered = false
 [node name="Animated" type="AnimatedSprite2D" parent="Art"]
 visible = false
 texture_filter = 2
 material = SubResource("WalkClarity")
-position = Vector2(-720, -1991)
+position = Vector2(-652, -1991)
 sprite_frames = ExtResource("4_walk")
 animation = &"walk_right"
 centered = false

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/location.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/chapter_hall.png" id="3"]
 
 [ext_resource type="Texture2D" path="res://assets/characters/npcs/przemyslav.png" id="npc_przemyslav"]
+
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
+
+[ext_resource type="Script" path="res://scripts/scenery_occluder.gd" id="depth"]
 
 [node name="chapter_hall" type="Node2D"]
 script = ExtResource("1")
@@ -13,7 +17,6 @@ camera_right = 1918
 walk_y = 665
 walk_left = 80.0
 walk_right = 1838
-walk_polygon = PackedVector2Array(149.818, 691.034, 149.818, 604.889, 234.090, 562.753, 332.408, 540.280, 440.090, 498.144, 491.589, 458.817, 580.544, 454.135, 622.680, 477.544, 622.680, 571.180, 795.907, 589.907, 898.906, 599.271, 1029.997, 608.634, 1235.996, 599.271, 1338.996, 552.453, 1395.177, 527.171, 1427.950, 538.407, 1460.723, 562.753, 1563.722, 608.634, 1694.813, 662.007, 1765.040, 691.034)
 
 [node name="Placeholder" type="Node2D" parent="."]
 visible = false
@@ -46,7 +49,7 @@ target_spawn = "FromChapterHall"
 marker_offset = Vector2(0, -180)
 
 [node name="Przemyslav" parent="Interactions" instance=ExtResource("2")]
-position = Vector2(1360, 560)
+position = Vector2(1450, 635)
 interaction_id = "przemyslav"
 display_name = "普热比斯拉夫"
 dialogue_id = ""
@@ -54,3 +57,131 @@ portrait_texture = ExtResource("npc_przemyslav")
 portrait_bounds = Rect2(726, 775, 906, 2528)
 placeholder_person = true
 interaction_enabled = false
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(149.818, 691.034, 149.818, 604.889, 234.090, 562.753, 332.408, 540.280, 440.090, 498.144, 491.589, 458.817, 580.544, 454.135, 622.680, 477.544, 622.680, 571.180, 795.907, 589.907, 898.906, 599.271, 1029.997, 608.634, 1235.996, 599.271, 1338.996, 552.453, 1395.177, 527.171, 1427.950, 538.407, 1460.723, 562.753, 1563.722, 608.634, 1694.813, 662.007, 1765.040, 691.034)
+
+[node name="Occlusion" type="Node2D" parent="."]
+
+[node name="OpenDoor" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(34, 273, 136, 286, 135, 696, 33, 641)
+uv = PackedVector2Array(102, 819, 408, 858, 405, 2088, 99, 1923)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 705
+
+[node name="CentreColumn" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(800, 0, 884, 0, 884, 482, 892, 499, 892, 534, 794, 534, 794, 499, 803, 483, 803, 184, 800, 151)
+uv = PackedVector2Array(2400, 0, 2652, 0, 2652, 1446, 2676, 1497, 2676, 1602, 2382, 1602, 2382, 1497, 2409, 1449, 2409, 552, 2400, 453)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 535
+
+[node name="RearLecternBook" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(632, 403, 661, 354, 684, 354, 713, 398, 709, 409, 667, 410)
+uv = PackedVector2Array(1896, 1209, 1983, 1062, 2052, 1062, 2139, 1194, 2127, 1227, 2001, 1230)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 540
+
+[node name="RearLecternPost" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(665, 408, 683, 409, 686, 463, 690, 465, 689, 508, 696, 525, 695, 537, 643, 538, 643, 525, 655, 511, 664, 509, 664, 463, 667, 461)
+uv = PackedVector2Array(1995, 1224, 2049, 1227, 2058, 1389, 2070, 1395, 2067, 1524, 2088, 1575, 2085, 1611, 1929, 1614, 1929, 1575, 1965, 1533, 1992, 1527, 1992, 1389, 2001, 1383)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 540
+
+[node name="FrontLecternBook" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(687, 408, 704, 401, 717, 399, 732, 403, 741, 397, 754, 395, 770, 402, 784, 424, 793, 430, 794, 437, 717, 455)
+uv = PackedVector2Array(2061, 1224, 2112, 1203, 2151, 1197, 2196, 1209, 2223, 1191, 2262, 1185, 2310, 1206, 2352, 1272, 2379, 1290, 2382, 1311, 2151, 1365)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 563
+
+[node name="FrontLecternBack" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(716, 454, 780, 440, 782, 469, 788, 483, 789, 496, 695, 496, 691, 481, 716, 469)
+uv = PackedVector2Array(2148, 1362, 2340, 1320, 2346, 1407, 2364, 1449, 2367, 1488, 2085, 1488, 2073, 1443, 2148, 1407)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 563
+
+[node name="FrontLecternLegLeft" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(694, 493, 708, 493, 708, 557, 694, 557)
+uv = PackedVector2Array(2082, 1479, 2124, 1479, 2124, 1671, 2082, 1671)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 563
+
+[node name="FrontLecternLegRight" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(762, 492, 777, 492, 777, 563, 762, 563)
+uv = PackedVector2Array(2286, 1476, 2331, 1476, 2331, 1689, 2286, 1689)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 563
+
+[node name="FrontLecternApron" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(707, 498, 762, 501, 762, 530, 707, 523)
+uv = PackedVector2Array(2121, 1494, 2286, 1503, 2286, 1590, 2121, 1569)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 563
+
+[node name="WritingTableTop" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(902, 429, 938, 410, 1193, 411, 1222, 429, 1223, 442, 902, 442)
+uv = PackedVector2Array(2706, 1287, 2814, 1230, 3579, 1233, 3666, 1287, 3669, 1326, 2706, 1326)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 579
+
+[node name="WritingTableLeftLeg" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(916, 442, 938, 442, 938, 539, 928, 563, 928, 577, 915, 577, 915, 563, 922, 549, 922, 459, 916, 459)
+uv = PackedVector2Array(2748, 1326, 2814, 1326, 2814, 1617, 2784, 1689, 2784, 1731, 2745, 1731, 2745, 1689, 2766, 1647, 2766, 1377, 2748, 1377)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 579
+
+[node name="WritingTableRightLeg" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(1185, 441, 1209, 441, 1209, 460, 1203, 460, 1203, 550, 1212, 567, 1210, 578, 1198, 578, 1186, 552)
+uv = PackedVector2Array(3555, 1323, 3627, 1323, 3627, 1380, 3609, 1380, 3609, 1650, 3636, 1701, 3630, 1734, 3594, 1734, 3558, 1656)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 579
+
+[node name="WritingTableApron" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(938, 443, 1186, 443, 1186, 464, 938, 464)
+uv = PackedVector2Array(2814, 1329, 3558, 1329, 3558, 1392, 2814, 1392)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 579
+
+[node name="WritingBench" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(915, 477, 935, 471, 1185, 471, 1209, 476, 1211, 485, 1197, 492, 1197, 526, 1183, 539, 1171, 531, 1168, 491, 949, 491, 947, 527, 938, 538, 934, 528, 935, 491, 918, 491)
+uv = PackedVector2Array(2745, 1431, 2805, 1413, 3555, 1413, 3627, 1428, 3633, 1455, 3591, 1476, 3591, 1578, 3549, 1617, 3513, 1593, 3504, 1473, 2847, 1473, 2841, 1581, 2814, 1614, 2802, 1584, 2805, 1473, 2754, 1473)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 540
+
+[node name="CandleStand" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(1226, 270, 1234, 270, 1234, 510, 1256, 558, 1251, 563, 1233, 525, 1232, 558, 1225, 558, 1226, 529, 1212, 556, 1207, 554, 1226, 514)
+uv = PackedVector2Array(3678, 810, 3702, 810, 3702, 1530, 3768, 1674, 3753, 1689, 3699, 1575, 3696, 1674, 3675, 1674, 3678, 1587, 3636, 1668, 3621, 1662, 3678, 1542)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 564
