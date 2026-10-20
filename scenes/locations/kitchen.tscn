@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/kitchen.png" id="3"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/rodrigo.png" id="npc_rodrigo"]
+
+[node name="kitchen" type="Node2D"]
+script = ExtResource("1")
+display_name = "厨房"
+background_texture = ExtResource("3")
+camera_right = 2260
+walk_y = 675
+walk_left = 80.0
+walk_right = 2180
+walk_obstacles = Array[PackedVector2Array]([PackedVector2Array(1848.389, 615.762, 1864.941, 599.209, 1945.498, 599.209, 1962.051, 627.900, 1966.465, 670.938, 1936.670, 679.766, 1848.389, 673.145), PackedVector2Array(164.424, 631.211, 232.842, 611.348, 246.084, 646.660, 231.738, 696.318, 175.459, 702.939, 162.217, 666.523), PackedVector2Array(11.035, 590.381, 108.145, 582.656, 183.184, 636.729, 173.252, 701.836, 22.070, 718.389), PackedVector2Array(1589.062, 576.035, 1713.760, 572.725, 1773.350, 597.002, 1775.557, 638.936, 1655.273, 647.764, 1589.062, 624.590), PackedVector2Array(1154.277, 601.416, 1208.350, 592.588, 1241.455, 623.486, 1200.625, 652.178, 1152.070, 649.971)])
+walk_polygon = PackedVector2Array(91.592, 706.250, 91.592, 627.900, 518.652, 616.865, 993.164, 646.660, 1423.535, 629.004, 1809.766, 633.418, 1975.293, 643.350, 2201.514, 662.109, 2201.514, 706.250)
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("3")
+centered = false
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(2050, 675)
+metadata/facing = -1
+
+[node name="FromSouth" type="Marker2D" parent="Spawns"]
+position = Vector2(2050, 675)
+metadata/facing = -1
+
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="ToSouth" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(2160, 675)
+interaction_id = "to_south_cloister"
+display_name = "返回回廊南"
+kind = 1
+target_location = "cloister"
+target_spawn = "FromKitchen"
+marker_offset = Vector2(0, -200)
+
+[node name="Rodrigo" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(980, 675)
+interaction_id = "rodrigo"
+display_name = "罗德里戈"
+dialogue_id = "rodrigo_conversation"
+marker_offset = Vector2(0, -170)
+portrait_texture = ExtResource("npc_rodrigo")
+portrait_bounds = Rect2(427, 630, 544, 1384)
+placeholder_person = true
+portrait_outline = PackedVector2Array(576.25, 685.0, 597.5, 655.0, 633.75, 637.5, 672.5, 631.25, 710.0, 632.5, 726.25, 642.5, 758.75, 635.0, 783.75, 652.5, 795.0, 681.25, 815.0, 698.75, 798.75, 715.0, 821.25, 733.75, 805.0, 752.5, 788.75, 763.75, 790.0, 793.75, 777.5, 822.5, 768.75, 858.75, 802.5, 871.25, 838.75, 897.5, 876.25, 956.25, 918.75, 1026.25, 962.5, 1075.0, 967.5, 1115.0, 958.75, 1166.25, 921.25, 1201.25, 870.0, 1241.25, 827.5, 1272.5, 815.0, 1325.0, 836.25, 1406.25, 842.5, 1526.25, 863.75, 1715.0, 882.5, 1922.5, 891.25, 1946.25, 902.5, 1977.5, 907.5, 2006.25, 871.25, 2006.25, 830.0, 1991.25, 801.25, 1968.75, 788.75, 1947.5, 627.5, 1942.5, 622.5, 1962.5, 585.0, 1966.25, 566.25, 1962.5, 533.75, 1973.75, 485.0, 1976.25, 442.5, 1967.5, 435.0, 1956.25, 443.75, 1941.25, 475.0, 1926.25, 513.75, 1908.75, 523.75, 1790.0, 536.25, 1657.5, 546.25, 1555.0, 543.75, 1435.0, 553.75, 1342.5, 538.75, 1311.25, 506.25, 1316.25, 496.25, 1305.0, 485.0, 1308.75, 482.5, 1278.75, 496.25, 1261.25, 517.5, 1250.0, 533.75, 1215.0, 548.75, 1197.5, 513.75, 1200.0, 483.75, 1183.75, 458.75, 1140.0, 440.0, 1083.75, 447.5, 1040.0, 453.75, 1006.25, 448.75, 963.75, 457.5, 942.5, 480.0, 928.75, 477.5, 907.5, 463.75, 891.25, 442.5, 895.0, 433.75, 903.75, 433.75, 893.75, 448.75, 882.5, 471.25, 881.25, 463.75, 857.5, 476.25, 862.5, 483.75, 887.5, 496.25, 857.5, 506.25, 860.0, 502.5, 887.5, 522.5, 883.75, 540.0, 892.5, 537.5, 897.5, 511.25, 893.75, 501.25, 905.0, 491.25, 930.0, 498.75, 947.5, 505.0, 995.0, 525.0, 1031.25, 538.75, 1061.25, 553.75, 1013.75, 560.0, 970.0, 578.75, 921.25, 616.25, 882.5, 641.25, 868.75, 645.0, 838.75, 617.5, 822.5, 607.5, 798.75, 602.5, 770.0, 577.5, 757.5, 583.75, 743.75, 571.25, 732.5, 593.75, 721.25, 573.75, 708.75)

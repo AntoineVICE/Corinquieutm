@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/cloister_west.png" id="3"]
+
+[node name="cloister_west" type="Node2D"]
+script = ExtResource("1")
+display_name = "回廊西"
+background_texture = ExtResource("3")
+camera_right = 3273
+walk_y = 630
+walk_left = 80.0
+walk_right = 3193
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("3")
+centered = false
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(230, 630)
+metadata/facing = 1
+
+[node name="FromNorth" type="Marker2D" parent="Spawns"]
+position = Vector2(230, 630)
+metadata/facing = 1
+
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="ToNorth" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(110, 630)
+interaction_id = "to_north_cloister"
+display_name = "返回回廊北"
+kind = 1
+target_location = "cloister_north"
+target_spawn = "FromWest"
+marker_offset = Vector2(0, -120)

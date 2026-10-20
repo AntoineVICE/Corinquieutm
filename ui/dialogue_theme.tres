@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=3 format=3]
+
+[sub_resource type="SystemFont" id="Font"]
+font_names = PackedStringArray("SimSun", "Songti SC", "Noto Serif CJK SC", "serif")
+font_weight = 400
+
+[sub_resource type="StyleBoxEmpty" id="TextOnly"]
+content_margin_left = 2.0
+content_margin_top = 8.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+
+[resource]
+default_font = SubResource("Font")
+default_font_size = 18
+Label/colors/font_color = Color(0.20, 0.17, 0.14, 1)
+RichTextLabel/colors/default_color = Color(0.20, 0.17, 0.14, 1)
+RichTextLabel/constants/line_separation = 8
+Button/styles/normal = SubResource("TextOnly")
+Button/styles/hover = SubResource("TextOnly")
+Button/styles/pressed = SubResource("TextOnly")
+Button/styles/focus = SubResource("TextOnly")
+Button/styles/disabled = SubResource("TextOnly")
+Button/colors/font_color = Color(0.20, 0.17, 0.14, 1)
+Button/colors/font_hover_color = Color(0.56, 0.19, 0.12, 1)
+Button/colors/font_focus_color = Color(0.56, 0.19, 0.12, 1)
+Button/colors/font_pressed_color = Color(0.38, 0.10, 0.07, 1)
+Button/colors/font_disabled_color = Color(0.20, 0.17, 0.14, 1)
+VBoxContainer/constants/separation = 8
+HBoxContainer/constants/separation = 8

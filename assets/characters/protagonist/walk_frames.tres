@@ -1,0 +1,64 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A0.png" id="left_0"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A1.png" id="left_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A2.png" id="left_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A3.png" id="left_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A4.png" id="left_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A5.png" id="left_5"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A0.png" id="right_0"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A1.png" id="right_1"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A2.png" id="right_2"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A3.png" id="right_3"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A4.png" id="right_4"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A5.png" id="right_5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("left_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("left_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("left_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("left_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("left_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("left_5")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("right_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("right_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("right_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("right_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("right_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("right_5")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 8.0
+}]
+

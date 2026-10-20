@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/chapter_hall.png" id="3"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/przemyslav.png" id="npc_przemyslav"]
+
+[node name="chapter_hall" type="Node2D"]
+script = ExtResource("1")
+display_name = "章会厅"
+background_texture = ExtResource("3")
+camera_right = 1918
+walk_y = 665
+walk_left = 80.0
+walk_right = 1838
+walk_polygon = PackedVector2Array(149.818, 691.034, 149.818, 604.889, 234.090, 562.753, 332.408, 540.280, 440.090, 498.144, 491.589, 458.817, 580.544, 454.135, 622.680, 477.544, 622.680, 571.180, 795.907, 589.907, 898.906, 599.271, 1029.997, 608.634, 1235.996, 599.271, 1338.996, 552.453, 1395.177, 527.171, 1427.950, 538.407, 1460.723, 562.753, 1563.722, 608.634, 1694.813, 662.007, 1765.040, 691.034)
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("3")
+centered = false
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(245, 665)
+metadata/facing = 1
+
+[node name="FromEast" type="Marker2D" parent="Spawns"]
+position = Vector2(245, 665)
+metadata/facing = 1
+
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="ToEast" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(180, 665)
+interaction_id = "to_east_cloister"
+display_name = "返回回廊东"
+kind = 1
+target_location = "cloister_east"
+target_spawn = "FromChapterHall"
+marker_offset = Vector2(0, -180)
+
+[node name="Przemyslav" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(1360, 560)
+interaction_id = "przemyslav"
+display_name = "普热比斯拉夫"
+dialogue_id = ""
+portrait_texture = ExtResource("npc_przemyslav")
+portrait_bounds = Rect2(726, 775, 906, 2528)
+placeholder_person = true
+interaction_enabled = false

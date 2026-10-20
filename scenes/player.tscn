@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/right/A0.png" id="2_idle_right"]
+[ext_resource type="Texture2D" path="res://assets/characters/protagonist/left/A0.png" id="3_idle_left"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/protagonist/walk_frames.tres" id="4_walk"]
+[ext_resource type="Shader" path="res://ui/character_clarity.gdshader" id="5_clarity"]
+[sub_resource type="ShaderMaterial" id="WalkClarity"]
+resource_local_to_scene = true
+shader = ExtResource("5_clarity")
+shader_parameter/amount = 0.55
+[sub_resource type="CapsuleShape2D" id="Body"]
+radius = 36.0
+height = 325.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1")
+idle_texture = ExtResource("2_idle_right")
+idle_texture_left = ExtResource("3_idle_left")
+walk_frames = ExtResource("4_walk")
+art_scale = 0.26
+
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2(0, -162.5)
+shape = SubResource("Body")
+
+[node name="Art" type="Node2D" parent="."]
+scale = Vector2(0.26, 0.26)
+[node name="Idle" type="Sprite2D" parent="Art"]
+texture_filter = 2
+position = Vector2(-720, -1991)
+texture = ExtResource("2_idle_right")
+centered = false
+[node name="Animated" type="AnimatedSprite2D" parent="Art"]
+visible = false
+texture_filter = 2
+material = SubResource("WalkClarity")
+position = Vector2(-720, -1991)
+sprite_frames = ExtResource("4_walk")
+animation = &"walk_right"
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -210)
+limit_left = 0
+limit_top = 0
+limit_right = 1600
+limit_bottom = 720
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

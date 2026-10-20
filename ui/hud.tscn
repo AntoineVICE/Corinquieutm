@@ -1,0 +1,164 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/exploration_frame.png" id="3_frame"]
+[ext_resource type="Texture2D" path="res://ui/dialogue_paper.tres" id="4_paper"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1")
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ExplorationFrame" type="TextureRect" parent="Screen"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("3_frame")
+expand_mode = 1
+
+[node name="Blocker" type="ColorRect" parent="Screen"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.10, 0.08, 0.30)
+
+[node name="Dialogue" type="Control" parent="Screen"]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -506.0
+offset_top = 28.0
+offset_right = -26.0
+offset_bottom = -28.0
+theme = ExtResource("2")
+
+[node name="Paper" type="TextureRect" parent="Screen/Dialogue"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("4_paper")
+expand_mode = 1
+
+[node name="Content" type="VBoxContainer" parent="Screen/Dialogue"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 138.0
+offset_right = -40.0
+offset_bottom = -40.0
+theme_override_constants/separation = 12
+
+[node name="Text" type="RichTextLabel" parent="Screen/Dialogue/Content"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = true
+scroll_following = true
+
+[node name="Choices" type="VBoxContainer" parent="Screen/Dialogue/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Actions" type="HBoxContainer" parent="Screen/Dialogue/Content"]
+layout_mode = 2
+alignment = 2
+
+[node name="Next" type="Button" parent="Screen/Dialogue/Content/Actions"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "继续"
+
+[node name="Journal" type="PanelContainer" parent="Screen"]
+visible = false
+layout_mode = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -255.0
+offset_right = 390.0
+offset_bottom = 255.0
+[node name="Content" type="VBoxContainer" parent="Screen/Journal"]
+layout_mode = 2
+[node name="Title" type="Label" parent="Screen/Journal/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "第一天 / 调查日志"
+[node name="Text" type="RichTextLabel" parent="Screen/Journal/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+[node name="Close" type="Button" parent="Screen/Journal/Content"]
+layout_mode = 2
+text = "返回 / J"
+
+[node name="Pause" type="PanelContainer" parent="Screen"]
+visible = false
+layout_mode = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -220.0
+offset_right = 240.0
+offset_bottom = 220.0
+[node name="Content" type="VBoxContainer" parent="Screen/Pause"]
+layout_mode = 2
+[node name="Title" type="Label" parent="Screen/Pause/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "第一天 / 菜单"
+[node name="Note" type="Label" parent="Screen/Pause/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "结束交谈、切换地点后自动保存。\n存档记录进度，不记录对白中的某一行。"
+[node name="Resume" type="Button" parent="Screen/Pause/Content"]
+layout_mode = 2
+text = "继续探索"
+[node name="Fullscreen" type="Button" parent="Screen/Pause/Content"]
+layout_mode = 2
+text = "切换为窗口 / F11"
+[node name="Save" type="Button" parent="Screen/Pause/Content"]
+layout_mode = 2
+text = "保存进度"
+[node name="Load" type="Button" parent="Screen/Pause/Content"]
+layout_mode = 2
+text = "读取存档"
+[node name="Restart" type="Button" parent="Screen/Pause/Content"]
+layout_mode = 2
+text = "重新开始第一天…"
+
+[node name="Fade" type="ColorRect" parent="Screen"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.055, 0.045, 0.035, 1)
+mouse_filter = 2
+
+[node name="RestartConfirm" type="ConfirmationDialog" parent="."]
+title = "重新开始第一天"
+initial_position = 2
+size = Vector2i(490, 150)
+dialog_text = "重新开始会覆盖当前存档。确认重新开始吗？"
+ok_button_text = "重新开始"
+cancel_button_text = "取消"

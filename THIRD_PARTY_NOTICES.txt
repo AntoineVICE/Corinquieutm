@@ -1,0 +1,78 @@
+InkGD runtime
+Source: https://github.com/ephread/inkgd/tree/godot4
+Commit: fea9098ee18d6cdbe9a5e25f8f0296bcdf0fd96a
+License: MIT; see addons/inkgd/LICENSE
+Vendored files: runtime/ and ink_runtime.gd, unchanged from upstream.
+The Godot 4 branch is a development branch without an official stable release.
+This project tests the pinned commit with Godot 4.7.2 standard edition.
+
+ink / inklecate compiler
+Version: 1.1.1 (Ink JSON format 21, matched to InkGD)
+Source: https://github.com/inkle/ink/releases/tag/v1.1.1
+Windows asset: https://github.com/inkle/ink/releases/download/v1.1.1/inklecate_windows.zip
+License: MIT; see tools/inklecate/LICENSE.txt
+inklecate.exe SHA-256: 1d38d90a9724f83fd2f337faa1e06179f214646aa7ee27242eb242212c7d6495
+The compiler is bundled only for authoring on Windows, not shipped in game exports.
+
+Original authored dialogue was supplied by the user in this conversation.
+The placeholder art is drawn by the project scripts; no third-party game art is included.
+
+Dorm background supplied by the user: 男主的卧室.png, 3840 x 2160.
+Copied unchanged to assets/backgrounds/dorm_room.png.
+Source SHA-256: 1b2e6f402ad721d7d016571768346134b0c877e3e1ab6240ea779268ee62bda4
+No additional license or ownership claim is made for this user-supplied asset.
+
+Protagonist artwork supplied by the user: 行走各帧.zip.
+Twelve original 1440 x 2560 RGBA PNGs: left and right A0 through A5.
+Extracted unchanged to assets/characters/protagonist/left and right.
+Each extracted PNG's SHA-256 was checked against the corresponding ZIP entry.
+Rendering uses the original transparent canvases without repainting or cropping.
+No additional license or ownership claim is made for these user-supplied assets.
+
+UI artwork supplied by the user:
+- 对话侧边栏.png (1920 x 1080) -> assets/ui/dialogue_sidebar.png
+- 探索页面边框.png (1920 x 1080) -> assets/ui/exploration_frame.png
+- 互动-交互.png (800 x 600) -> assets/ui/interaction_prompt.png
+All three RGBA PNGs are copied byte-for-byte; SHA-256 matched the source files.
+AtlasTexture resources select the paper and small hand-icon regions for display.
+The full hand banner is retained as source art but is not used by the current UI.
+A circular canvas shader masks the small hand marker at runtime; the PNG is unchanged.
+No additional license or ownership claim is made for these user-supplied assets.
+
+Additional scene backgrounds supplied by the user:
+- 回廊 南_.png (9819 x 2160) -> assets/backgrounds/cloister_south.png
+  SHA-256: 0178690f2c40a15d1ac88e2f65f105509c874c85e345ca20f9c19099aa1418d1
+- 菜地牲畜厨房后面.png (9491 x 2160) -> assets/backgrounds/garden_livestock.png
+  SHA-256: 73d86b97b1d005b66845b7992181acb013ba45258ac4f4ac8eacc65993bc7d6e
+Both PNGs are copied unchanged; the game displays the full panoramas with a scrolling camera.
+No additional license or ownership claim is made for these user-supplied assets.
+
+Additional map artwork supplied 2026-10-19:
+- 厨房 新.png -> assets/backgrounds/kitchen.png
+  SHA-256: 1e5c8845f6397437b7cb59994da428f95938dde4f9d25f1fb111bdbd6a37dc05
+- 回廊 东_.png -> assets/backgrounds/cloister_east.png
+  SHA-256: 4047fa29243b49ef11e366d6ec0a67d4536548593fa6365d6d21d6296d03bc04
+- 回廊 北_.png -> assets/backgrounds/cloister_north.png
+  SHA-256: cfb701d47af49c31a3d014843d35c1e8d5b7604a579207ee9805be4c179d31d1
+- 回廊 西_.png -> assets/backgrounds/cloister_west.png
+  SHA-256: a459b03e0caf0bb75e2cd8bc9b09e0fbc5d4535756ab9d1c114c6efa2cf20372
+- 餐厅 新版.png -> assets/backgrounds/refectory.png
+  SHA-256: 563659a5f9005b2a6785caff05af97a9132d010aa934bcbe43c2a0d39029f40a
+- 章会厅(3).png -> assets/backgrounds/chapter_hall.png
+  SHA-256: f5a9829edfdf4bbc6e3d8091792ddc3446f217fc6c56e2596b5f074d43503ce1
+- 藏书室.png -> assets/backgrounds/library.png
+  SHA-256: e1c78498a04ebfbf39b370b3f72687e09ff7efffaf4e95e337567b7d3d341a14
+- 病舍.png -> assets/backgrounds/infirmary.png
+  SHA-256: 764f3bcbc9bff993c193b2bb904fc346bd7c1f157808c21d9a5dfe9899e5776a
+All eight PNGs are copied unchanged; foreground table masks reference the original texture at runtime.
+No additional license or ownership claim is made for these user-supplied assets.
+
+NPC originals supplied by the user, 2026-10-19. Copied unchanged.
+瓦茨拉夫小人.png -> assets/characters/npcs/vaclav.png; SHA256 4351fbd8824ea15e93b319ade983ff953377d11e7795b445722fed3327c810d6
+塞韦里诺小人.PNG -> assets/characters/npcs/severino.png; SHA256 707165ea54beca76fb7ebd75aa44ad70de6e71bd3b2eab336d04b41adc43ddad
+尼古拉斯小人.PNG -> assets/characters/npcs/przemyslav.png; SHA256 5f5e3748c99fb0eec0051096967c8984c70fd24361785e1c6d8a377472d7fc22
+罗德里格小人.png -> assets/characters/npcs/rodrigo.png; SHA256 4583590017d30cc3e80ebcace3b087f1553ccba50b2a2db03d104a2ea8a21d59
+菲利普小人.png -> assets/characters/npcs/philipp.png; SHA256 258c717fd7ea15cdde6e3b72a5a4dde762dff79b5a1c1148703fd02ae856fb74
+安布罗斯小人.PNG -> assets/characters/npcs/ambrose.png; SHA256 87b6c7fe0a8299b2ab4f63a8c9f915d7733715e6b536ba900c1e5ba5cfd081e2
+西蒙小人.png -> assets/characters/npcs/simon.png; SHA256 253070665fce7932bc0a1b9b68f37254d8fa98ddc5de84fc2e1d2c0d567630b9
+Filename 尼古拉斯小人.PNG is identified by the author as 普热比斯拉夫. 罗德里格小人.png is used for dialogue character 罗德里戈. Original source pixels are retained; optional Polygon2D display silhouettes clip surrounding export residue.

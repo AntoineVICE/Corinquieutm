@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/placeholder_background.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="3"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/philipp.png" id="npc_philipp"]
+
+[node name="Courtyard" type="Node2D"]
+script = ExtResource("1")
+display_name = "外院"
+
+[node name="Placeholder" type="Node2D" parent="."]
+z_index = -20
+script = ExtResource("2")
+exterior = true
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(800, 360)
+
+[node name="Spawns" type="Node2D" parent="."]
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(280, 570)
+[node name="FromDorm" type="Marker2D" parent="Spawns"]
+position = Vector2(280, 570)
+[node name="FromGarden" type="Marker2D" parent="Spawns"]
+position = Vector2(1430, 570)
+[node name="FromCloister" type="Marker2D" parent="Spawns"]
+position = Vector2(1110, 570)
+
+[node name="Interactions" type="Node2D" parent="."]
+[node name="ToDorm" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(110, 570)
+interaction_id = "to_dorm"
+display_name = "返回见习生宿舍"
+kind = 1
+target_location = "dorm"
+target_spawn = "FromCourtyard"
+
+[node name="Philipp" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(460, 570)
+interaction_id = "philipp"
+display_name = "菲利普修士"
+dialogue_id = "philipp_followup"
+required_flags = Array[String](["courtyard_intro_seen"])
+portrait_texture = ExtResource("npc_philipp")
+portrait_bounds = Rect2(533, 640, 378, 1368)
+placeholder_person = true
+portrait_outline = PackedVector2Array(610.0, 790.0, 627.5, 746.25, 647.5, 698.75, 685.0, 663.75, 720.0, 647.5, 758.75, 645.0, 796.25, 651.25, 821.25, 665.0, 832.5, 685.0, 848.75, 705.0, 857.5, 740.0, 852.5, 777.5, 832.5, 811.25, 812.5, 825.0, 807.5, 853.75, 828.75, 881.25, 850.0, 912.5, 868.75, 960.0, 886.25, 1007.5, 898.75, 1061.25, 907.5, 1122.5, 908.75, 1197.5, 898.75, 1232.5, 878.75, 1247.5, 855.0, 1245.0, 857.5, 1335.0, 861.25, 1437.5, 870.0, 1571.25, 873.75, 1700.0, 882.5, 1872.5, 876.25, 1910.0, 862.5, 1923.75, 878.75, 1942.5, 881.25, 1975.0, 850.0, 1983.75, 797.5, 1982.5, 751.25, 1963.75, 725.0, 1946.25, 703.75, 1941.25, 702.5, 1912.5, 673.75, 1908.75, 665.0, 1937.5, 641.25, 1968.75, 613.75, 1995.0, 576.25, 2007.5, 545.0, 2001.25, 541.25, 1987.5, 555.0, 1961.25, 565.0, 1937.5, 580.0, 1906.25, 543.75, 1903.75, 532.5, 1867.5, 537.5, 1781.25, 540.0, 1638.75, 545.0, 1493.75, 563.75, 1352.5, 578.75, 1246.25, 561.25, 1230.0, 542.5, 1195.0, 533.75, 1143.75, 532.5, 1088.75, 536.25, 1030.0, 548.75, 977.5, 567.5, 920.0, 592.5, 886.25, 630.0, 862.5, 635.0, 847.5, 627.5, 818.75, 601.25, 807.5)
+
+[node name="Bartosz" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(620, 570)
+interaction_id = "bartosz"
+display_name = "德拉霍尼采的巴托什"
+placeholder_person = true
+interaction_enabled = false
+
+[node name="ToGarden" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(1515, 570)
+interaction_id = "to_garden"
+display_name = "前往牲畜棚／菜园"
+kind = 1
+target_location = "garden"
+target_spawn = "FromCourtyard"
+marker_offset = Vector2(0, -120)
+
+[node name="ToCloister" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(1150, 570)
+interaction_id = "to_cloister"
+display_name = "进入回廊南"
+kind = 1
+target_location = "cloister"
+target_spawn = "FromCourtyard"
+marker_offset = Vector2(0, -170)
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(800, 360)

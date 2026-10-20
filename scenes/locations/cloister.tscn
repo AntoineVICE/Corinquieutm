@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/cloister_south.png" id="3"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/ambrose.png" id="npc_ambrose"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/severino.png" id="npc_severino"]
+
+[node name="cloister" type="Node2D"]
+script = ExtResource("1")
+display_name = "回廊南"
+background_texture = ExtResource("3")
+camera_right = 3273
+walk_y = 630
+walk_left = 80.0
+walk_right = 3193
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("3")
+centered = false
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="IntroCamera" type="Marker2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(230, 630)
+metadata/facing = 1
+
+[node name="FromCourtyard" type="Marker2D" parent="Spawns"]
+position = Vector2(230, 630)
+metadata/facing = 1
+
+[node name="FromEast" type="Marker2D" parent="Spawns"]
+position = Vector2(3040, 630)
+metadata/facing = -1
+
+[node name="FromKitchen" type="Marker2D" parent="Spawns"]
+position = Vector2(1790, 630)
+metadata/facing = -1
+
+[node name="FromRefectory" type="Marker2D" parent="Spawns"]
+position = Vector2(500, 630)
+metadata/facing = 1
+
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="ToCourtyard" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(110, 630)
+interaction_id = "to_courtyard"
+display_name = "返回外院"
+kind = 1
+target_location = "courtyard"
+target_spawn = "FromCloister"
+marker_offset = Vector2(0, -120)
+
+[node name="ToEastCloister" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(3150, 630)
+interaction_id = "to_east_cloister"
+display_name = "前往回廊东"
+kind = 1
+target_location = "cloister_east"
+target_spawn = "FromSouth"
+marker_offset = Vector2(0, -120)
+
+[node name="ToKitchen" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(1715, 630)
+interaction_id = "to_kitchen"
+display_name = "进入厨房"
+kind = 1
+target_location = "kitchen"
+target_spawn = "FromSouth"
+marker_offset = Vector2(0, -180)
+
+[node name="ToRefectory" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(425, 630)
+interaction_id = "to_refectory"
+display_name = "进入餐厅"
+kind = 1
+target_location = "refectory"
+target_spawn = "FromSouth"
+marker_offset = Vector2(0, -180)
+
+[node name="Ambrose" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(440, 630)
+interaction_id = "ambrose"
+display_name = "安布罗斯"
+dialogue_id = "ambrose_conversation"
+portrait_texture = ExtResource("npc_ambrose")
+portrait_bounds = Rect2(408, 670, 670, 1345)
+placeholder_person = true
+required_flags = Array[String](["cloister_intro_seen"])
+
+[node name="Severino" parent="Interactions" instance=ExtResource("2")]
+position = Vector2(650, 630)
+interaction_id = "severino"
+display_name = "塞维里诺"
+dialogue_id = ""
+portrait_texture = ExtResource("npc_severino")
+portrait_bounds = Rect2(949, 762, 766, 2571)
+placeholder_person = true
+interaction_enabled = false
+hidden_after_flag = "cloister_intro_seen"

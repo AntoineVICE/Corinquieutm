@@ -1,0 +1,21 @@
+# Keep source files consistent across Windows and other development machines.
+* text=auto eol=lf
+
+# Windows launchers.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Preserve compiled Ink bytes: saved games identify the compiled story by hash.
+story/*.json -text
+
+# Original art and bundled compiler files.
+*.png binary
+*.PNG binary
+*.jpg binary
+*.jpeg binary
+*.ogg binary
+*.wav binary
+*.mp3 binary
+*.exe binary
+*.dll binary

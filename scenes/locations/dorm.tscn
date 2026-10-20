@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/placeholder_background.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="3"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/dorm_room.png" id="4"]
+
+[node name="Dorm" type="Node2D"]
+script = ExtResource("1")
+display_name = "见习生宿舍"
+background_texture = ExtResource("4")
+camera_right = 1280
+walk_y = 654.0
+walk_left = 145.0
+walk_right = 1220.0
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+z_index = -20
+script = ExtResource("2")
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(640, 360)
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("4")
+
+[node name="Spawns" type="Node2D" parent="."]
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(550, 654)
+[node name="FromCourtyard" type="Marker2D" parent="Spawns"]
+position = Vector2(1160, 654)
+
+[node name="Interactions" type="Node2D" parent="."]
+[node name="Jan" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(420, 654)
+interaction_id = "jan"
+display_name = "扬"
+placeholder_person = true
+hidden_after_flag = "dorm_wakeup_done"
+interaction_enabled = false
+marker_offset = Vector2(0, -179)
+
+[node name="Bed" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(710, 654)
+interaction_id = "bed"
+display_name = "床"
+dialogue_id = "inspect_bed"
+marker_offset = Vector2(0, -119)
+
+[node name="Chest" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(980, 654)
+interaction_id = "chest"
+display_name = "床尾的箱子"
+dialogue_id = "inspect_chest"
+marker_offset = Vector2(0, -79)
+
+[node name="Cross" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(606, 654)
+interaction_id = "cross"
+display_name = "十字架"
+dialogue_id = "inspect_cross"
+marker_offset = Vector2(0, -379)
+
+[node name="Desk" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(285, 654)
+interaction_id = "desk"
+display_name = "书桌"
+dialogue_id = "inspect_desk"
+marker_offset = Vector2(0, -204)
+
+[node name="ToCourtyard" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(1185, 654)
+interaction_id = "to_courtyard"
+display_name = "前往外院"
+kind = 1
+target_location = "courtyard"
+target_spawn = "FromDorm"
+required_flags = Array[String](["dorm_wakeup_done"])
+marker_offset = Vector2(0, -259)
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(640, 360)
