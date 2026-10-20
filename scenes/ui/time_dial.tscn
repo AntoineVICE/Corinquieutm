@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/time_dial.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/time_dial.png" id="2_dial"]
+[ext_resource type="Texture2D" path="res://assets/ui/time_dial_pointer.png" id="3_pointer"]
+
+[node name="TimeDial" type="Control"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 52.0
+offset_right = 238.0
+offset_bottom = 228.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Dial" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 176.0
+pivot_offset = Vector2(88, 88)
+mouse_filter = 2
+texture = ExtResource("2_dial")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Pointer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 167.2
+offset_top = 72.6
+offset_right = 249.2
+offset_bottom = 103.4
+mouse_filter = 2
+texture = ExtResource("3_pointer")
+expand_mode = 1
+stretch_mode = 0

@@ -7,6 +7,7 @@ const SAVE_PATH = "user://story_day1_ink_v3.json"
 const LOCATION_IDS = ["dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary"]
 const LOCATION_WIDTHS = {"dorm": 1600, "courtyard": 1600, "garden": 3164, "cloister": 3273, "cloister_east": 3273, "cloister_north": 3273, "cloister_west": 3273, "kitchen": 2260, "refectory": 2254, "chapter_hall": 1918, "library": 2219, "infirmary": 2920}
 const FLAG_IDS = ["dorm_wakeup_done", "courtyard_intro_seen", "oats_request_known", "oats_question_asked", "cloister_intro_seen"]
+const PERIOD_NAMES = ["晨祷", "三时祷", "九时祷", "晚祷", "终祷"]
 const OBSERVATION_IDS = ["bed", "desk", "cross", "chest"]
 const CHOICE_VALUES = {
 	"wake_response": ["spoken", "silent"],
@@ -24,6 +25,7 @@ var story: InkStory
 var compiled_story: String = ""
 
 var location_id: String = "dorm"
+var period_index: int = 0
 var player_position: Vector2 = Vector2(550, 654)
 var facing: int = 1
 var flags: Dictionary = {}
@@ -39,6 +41,9 @@ func reset() -> void:
 
 func has_flag(id: String) -> bool:
 	return bool(flags.get(id, false))
+
+func period_name() -> String:
+	return PERIOD_NAMES[clampi(period_index, 0, PERIOD_NAMES.size() - 1)]
 
 func meets(required_flags: Array) -> bool:
 	for id in required_flags:

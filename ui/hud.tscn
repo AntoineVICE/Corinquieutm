@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2"]
 [ext_resource type="Texture2D" path="res://assets/ui/exploration_frame.png" id="3_frame"]
 [ext_resource type="Texture2D" path="res://ui/dialogue_paper.tres" id="4_paper"]
 [ext_resource type="PackedScene" path="res://scenes/ui/tab_menu.tscn" id="5_tabmenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/time_dial.tscn" id="6_timedial"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 20
@@ -25,6 +26,8 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource("3_frame")
 expand_mode = 1
+
+[node name="TimeDial" parent="Screen" instance=ExtResource("6_timedial")]
 
 [node name="Blocker" type="ColorRect" parent="Screen"]
 visible = false
