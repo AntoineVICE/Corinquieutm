@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="Script" path="res://scripts/location.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/infirmary.png" id="3"]
+
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
+
+[ext_resource type="Script" path="res://scripts/scenery_occluder.gd" id="depth"]
 
 [node name="infirmary" type="Node2D"]
 script = ExtResource("1")
@@ -11,8 +15,6 @@ camera_right = 2920
 walk_y = 670
 walk_left = 80.0
 walk_right = 2840
-walk_obstacles = Array[PackedVector2Array]([PackedVector2Array(222.371, 568.757, 300.771, 561.630, 319.302, 598.691, 310.749, 650.008, 233.775, 658.561, 219.520, 631.477), PackedVector2Array(1080.495, 535.971, 1147.492, 527.419, 1177.426, 560.204, 1168.874, 605.819, 1089.048, 610.095, 1070.517, 581.586), PackedVector2Array(2644.220, 614.371, 2726.897, 594.415, 2795.319, 637.179, 2809.573, 714.153, 2641.369, 719.855, 2615.711, 669.964), PackedVector2Array(2826.679, 632.902, 2885.122, 627.201, 2917.908, 655.710, 2917.908, 719.855, 2832.381, 719.855), PackedVector2Array(2363.406, 604.393, 2466.038, 581.586, 2642.795, 622.924, 2655.624, 682.793, 2554.417, 698.473, 2394.766, 664.262)])
-walk_polygon = PackedVector2Array(111.186, 662.837, 202.415, 621.499, 441.891, 615.797, 669.964, 621.499, 883.783, 621.499, 1168.874, 620.073, 1411.201, 617.222, 1653.529, 630.051, 1867.347, 647.157, 2109.674, 642.881, 2323.493, 628.626, 2537.311, 647.157, 2736.875, 679.942, 2879.421, 688.495, 2879.421, 695.622, 111.186, 695.622)
 
 [node name="Placeholder" type="Node2D" parent="."]
 visible = false
@@ -67,3 +69,44 @@ interaction_id = "saint_luke"
 display_name = "圣路加画像"
 dialogue_id = "inspect_saint_luke"
 marker_offset = Vector2(0, -470)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(111.186, 662.837, 202.415, 621.499, 441.891, 615.797, 669.964, 621.499, 883.783, 621.499, 1168.874, 620.073, 1411.201, 617.222, 1653.529, 630.051, 1867.347, 647.157, 2109.674, 642.881, 2323.493, 628.626, 2537.311, 647.157, 2736.875, 679.942, 2879.421, 688.495, 2879.421, 695.622, 111.186, 695.622)
+
+[node name="EntranceBarrel" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(222.371, 568.757, 300.771, 561.630, 319.302, 598.691, 310.749, 650.008, 233.775, 658.561, 219.520, 631.477)
+
+[node name="WorkbenchBarrel" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(1080.495, 535.971, 1147.492, 527.419, 1177.426, 560.204, 1168.874, 605.819, 1089.048, 610.095, 1070.517, 581.586)
+
+[node name="Firewood" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(2644.220, 614.371, 2726.897, 594.415, 2795.319, 637.179, 2809.573, 714.153, 2641.369, 719.855, 2615.711, 669.964)
+
+[node name="FarBucket" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(2826.679, 632.902, 2885.122, 627.201, 2917.908, 655.710, 2917.908, 719.855, 2832.381, 719.855)
+
+[node name="Hearth" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(2363.406, 604.393, 2466.038, 581.586, 2642.795, 622.924, 2655.624, 682.793, 2554.417, 698.473, 2394.766, 664.262)
+
+[node name="Occlusion" type="Node2D" parent="."]
+
+[node name="EntranceBarrel" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(245, 535, 257, 528, 287, 526, 308, 531, 313, 539, 309, 555, 315, 574, 318, 606, 314, 616, 310, 641, 293, 646, 254, 645, 238, 641, 235, 615, 232, 604, 238, 577, 241, 556)
+uv = PackedVector2Array(735, 1605, 771, 1584, 861, 1578, 924, 1593, 939, 1617, 927, 1665, 945, 1722, 954, 1818, 942, 1848, 930, 1923, 879, 1938, 762, 1935, 714, 1923, 705, 1845, 696, 1812, 714, 1731, 723, 1668)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 647

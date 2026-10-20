@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 [ext_resource type="Script" path="res://scripts/location.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/cloister_south.png" id="3"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" path="res://assets/characters/npcs/ambrose.png" id="npc_ambrose"]
 
 [ext_resource type="Texture2D" path="res://assets/characters/npcs/severino.png" id="npc_severino"]
+
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
 
 [node name="cloister" type="Node2D"]
 script = ExtResource("1")
@@ -28,7 +30,7 @@ z_index = 10
 [node name="Spawns" type="Node2D" parent="."]
 
 [node name="IntroCamera" type="Marker2D" parent="."]
-position = Vector2(640, 360)
+position = Vector2(800, 360)
 
 [node name="Start" type="Marker2D" parent="Spawns"]
 position = Vector2(230, 630)
@@ -89,7 +91,7 @@ target_spawn = "FromSouth"
 marker_offset = Vector2(0, -180)
 
 [node name="Ambrose" parent="Interactions" instance=ExtResource("2")]
-position = Vector2(440, 630)
+position = Vector2(790, 620)
 interaction_id = "ambrose"
 display_name = "安布罗斯"
 dialogue_id = "ambrose_conversation"
@@ -99,7 +101,7 @@ placeholder_person = true
 required_flags = Array[String](["cloister_intro_seen"])
 
 [node name="Severino" parent="Interactions" instance=ExtResource("2")]
-position = Vector2(650, 630)
+position = Vector2(630, 620)
 interaction_id = "severino"
 display_name = "塞维里诺"
 dialogue_id = ""
@@ -108,3 +110,9 @@ portrait_bounds = Rect2(949, 762, 766, 2571)
 placeholder_person = true
 interaction_enabled = false
 hidden_after_flag = "cloister_intro_seen"
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(80, 605, 3193, 605, 3193, 698, 80, 698)

@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="Script" path="res://scripts/location.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="2"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/refectory.png" id="3"]
+
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
+
+[ext_resource type="Script" path="res://scripts/scenery_occluder.gd" id="depth"]
 
 [node name="refectory" type="Node2D"]
 script = ExtResource("1")
@@ -42,116 +46,218 @@ target_location = "cloister"
 target_spawn = "FromRefectory"
 marker_offset = Vector2(0, -180)
 
-[node name="TablePart0" type="Polygon2D" parent="."]
+[node name="Occlusion" type="Node2D" parent="."]
+
+[node name="TablePart0" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(258.599, 590.927, 1988.465, 590.927, 1988.465, 618.438, 258.599, 618.438)
 uv = PackedVector2Array(775.798, 1772.782, 5965.394, 1772.782, 5965.394, 1855.313, 775.798, 1855.313)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart1" type="Polygon2D" parent="."]
+
+[node name="TablePart1" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(320.223, 610.735, 363.140, 610.735, 363.140, 719.677, 320.223, 719.677)
 uv = PackedVector2Array(960.669, 1832.205, 1089.419, 1832.205, 1089.419, 2159.030, 960.669, 2159.030)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart2" type="Polygon2D" parent="."]
+
+[node name="TablePart2" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(780.200, 610.735, 825.317, 610.735, 825.317, 719.677, 780.200, 719.677)
 uv = PackedVector2Array(2340.600, 1832.205, 2475.952, 1832.205, 2475.952, 2159.030, 2340.600, 2159.030)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart3" type="Polygon2D" parent="."]
+
+[node name="TablePart3" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1326.010, 610.735, 1377.730, 610.735, 1377.730, 719.677, 1326.010, 719.677)
 uv = PackedVector2Array(3978.030, 1832.205, 4133.189, 1832.205, 4133.189, 2159.030, 3978.030, 2159.030)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart4" type="Polygon2D" parent="."]
+
+[node name="TablePart4" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1925.741, 610.735, 1965.356, 610.735, 1965.356, 719.677, 1925.741, 719.677)
 uv = PackedVector2Array(5777.222, 1832.205, 5896.067, 1832.205, 5896.067, 2159.030, 5777.222, 2159.030)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart5" type="Polygon2D" parent="."]
+
+[node name="TablePart5" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(363.140, 685.564, 1925.741, 685.564, 1925.741, 714.175, 363.140, 714.175)
 uv = PackedVector2Array(1089.419, 2056.691, 5777.222, 2056.691, 5777.222, 2142.524, 1089.419, 2142.524)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart6" type="Polygon2D" parent="."]
+
+[node name="TablePart6" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(324.625, 555.714, 351.035, 555.714, 351.035, 592.028, 324.625, 592.028)
 uv = PackedVector2Array(973.875, 1667.141, 1053.105, 1667.141, 1053.105, 1776.083, 973.875, 1776.083)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart7" type="Polygon2D" parent="."]
+
+[node name="TablePart7" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(369.742, 505.094, 363.140, 475.383, 375.244, 456.676, 385.148, 456.676, 396.152, 502.893, 429.165, 492.990, 458.876, 479.785, 485.287, 490.789, 520.500, 502.893, 523.801, 551.312, 507.295, 576.622, 386.249, 576.622)
 uv = PackedVector2Array(1109.227, 1515.283, 1089.419, 1426.148, 1125.733, 1370.027, 1155.444, 1370.027, 1188.457, 1508.680, 1287.495, 1478.969, 1376.629, 1439.354, 1455.860, 1472.366, 1561.500, 1508.680, 1571.404, 1653.936, 1521.885, 1729.865, 1158.746, 1729.865)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart8" type="Polygon2D" parent="."]
+
+[node name="TablePart8" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(476.483, 553.513, 535.906, 552.412, 542.509, 567.818, 531.504, 582.124, 487.487, 582.124)
 uv = PackedVector2Array(1429.450, 1660.539, 1607.718, 1657.237, 1627.526, 1703.455, 1594.513, 1746.372, 1462.462, 1746.372)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart9" type="Polygon2D" parent="."]
+
+[node name="TablePart9" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(552.412, 567.818, 567.818, 556.814, 598.630, 555.714, 622.840, 565.618, 621.739, 587.626, 554.613, 587.626)
 uv = PackedVector2Array(1657.237, 1703.455, 1703.455, 1670.442, 1795.891, 1667.141, 1868.519, 1696.853, 1865.217, 1762.878, 1663.840, 1762.878)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart10" type="Polygon2D" parent="."]
+
+[node name="TablePart10" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(671.258, 549.111, 663.555, 522.701, 671.258, 487.487, 697.668, 486.387, 714.175, 501.793, 736.183, 503.994, 758.192, 533.705, 749.388, 556.814, 761.493, 586.526, 665.756, 586.526)
 uv = PackedVector2Array(2013.774, 1647.333, 1990.666, 1568.103, 2013.774, 1462.462, 2093.005, 1459.161, 2142.524, 1505.379, 2208.549, 1511.981, 2274.575, 1601.116, 2248.165, 1670.442, 2284.479, 1759.577, 1997.268, 1759.577)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart11" type="Polygon2D" parent="."]
+
+[node name="TablePart11" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(820.916, 530.404, 852.828, 531.504, 859.431, 590.927, 815.414, 590.927)
 uv = PackedVector2Array(2462.747, 1591.212, 2558.484, 1594.513, 2578.292, 1772.782, 2446.241, 1772.782)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart12" type="Polygon2D" parent="."]
+
+[node name="TablePart12" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(913.351, 565.618, 939.761, 555.714, 965.071, 559.015, 967.272, 589.827, 908.950, 589.827)
 uv = PackedVector2Array(2740.054, 1696.853, 2819.284, 1667.141, 2895.213, 1677.045, 2901.816, 1769.480, 2726.849, 1769.480)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart13" type="Polygon2D" parent="."]
+
+[node name="TablePart13" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1298.499, 553.513, 1302.901, 538.107, 1333.713, 537.007, 1343.617, 565.618, 1331.512, 588.726, 1296.299, 588.726)
 uv = PackedVector2Array(3895.498, 1660.539, 3908.703, 1614.321, 4001.139, 1611.020, 4030.850, 1696.853, 3994.536, 1766.179, 3888.896, 1766.179)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart14" type="Polygon2D" parent="."]
+
+[node name="TablePart14" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1382.132, 496.291, 1390.935, 477.584, 1423.948, 481.985, 1433.851, 490.789, 1463.563, 487.487, 1483.370, 497.391, 1484.471, 519.400, 1469.065, 532.605, 1476.768, 562.316, 1456.960, 586.526, 1387.634, 583.224, 1376.629, 557.915)
 uv = PackedVector2Array(4146.395, 1488.873, 4172.805, 1432.751, 4271.843, 1445.956, 4301.554, 1472.366, 4390.688, 1462.462, 4450.111, 1492.174, 4453.413, 1558.199, 4407.195, 1597.814, 4430.304, 1686.949, 4370.881, 1759.577, 4162.901, 1749.673, 4129.888, 1673.744)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart15" type="Polygon2D" parent="."]
+
+[node name="TablePart15" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1519.684, 556.814, 1553.798, 555.714, 1559.300, 589.827, 1518.584, 589.827)
 uv = PackedVector2Array(4559.053, 1670.442, 4661.393, 1667.141, 4677.899, 1769.480, 4555.752, 1769.480)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart16" type="Polygon2D" parent="."]
+
+[node name="TablePart16" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1575.806, 565.618, 1606.618, 555.714, 1639.631, 555.714, 1661.639, 566.718, 1647.333, 587.626, 1592.312, 587.626)
 uv = PackedVector2Array(4727.418, 1696.853, 4819.854, 1667.141, 4918.892, 1667.141, 4984.917, 1700.154, 4942.000, 1762.878, 4776.937, 1762.878)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart17" type="Polygon2D" parent="."]
+
+[node name="TablePart17" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1710.058, 527.103, 1746.372, 528.203, 1760.677, 549.111, 1758.476, 588.726, 1695.752, 588.726, 1694.652, 546.910)
 uv = PackedVector2Array(5130.173, 1581.308, 5239.115, 1584.609, 5282.031, 1647.333, 5275.429, 1766.179, 5087.256, 1766.179, 5083.955, 1640.731)
+script = ExtResource("depth")
+depth_y = 690.0
 
-[node name="TablePart18" type="Polygon2D" parent="."]
+
+[node name="TablePart18" type="Polygon2D" parent="Occlusion"]
 z_index = 10
 texture = ExtResource("3")
 polygon = PackedVector2Array(1798.091, 553.513, 1821.200, 553.513, 1824.502, 588.726, 1798.091, 588.726)
 uv = PackedVector2Array(5394.274, 1660.539, 5463.601, 1660.539, 5473.505, 1766.179, 5394.274, 1766.179)
+script = ExtResource("depth")
+depth_y = 690.0
+
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(80, 620, 2174, 620, 2174, 670, 80, 670)
+
+[node name="FrontTableFootprint" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+kind = 1
+polygon = PackedVector2Array(258, 648, 1988, 648, 1988, 720, 258, 720)
+
+[node name="FrontTableSurface" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(258, 591, 373, 563, 1888, 563, 1988, 591, 1988, 598, 258, 598)
+uv = PackedVector2Array(774, 1773, 1119, 1689, 5664, 1689, 5964, 1773, 5964, 1794, 774, 1794)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 690
+
+[node name="FrontTableBraceLeft" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(294, 618, 397, 618, 397, 638, 370, 648, 294, 650)
+uv = PackedVector2Array(882, 1854, 1191, 1854, 1191, 1914, 1110, 1944, 882, 1950)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 690
+
+[node name="FrontTableBraceMiddleLeft" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(749, 618, 871, 618, 871, 635, 849, 649, 749, 649)
+uv = PackedVector2Array(2247, 1854, 2613, 1854, 2613, 1905, 2547, 1947, 2247, 1947)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 690
+
+[node name="FrontTableBraceMiddleRight" type="Polygon2D" parent="Occlusion"]
+texture = ExtResource("3")
+polygon = PackedVector2Array(1295, 618, 1410, 618, 1410, 637, 1388, 649, 1295, 649)
+uv = PackedVector2Array(3885, 1854, 4230, 1854, 4230, 1911, 4164, 1947, 3885, 1947)
+antialiased = true
+script = ExtResource("depth")
+depth_y = 690
