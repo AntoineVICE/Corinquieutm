@@ -198,6 +198,7 @@ func change_location(id: String, spawn: String = "Start", restore_position: bool
 	camera.reset_smoothing()
 	camera.force_update_scroll()
 	GameState.location_id = id
+	GameState.changed.emit()
 	_sync_position()
 	_play_audio($Audio/Music, current_location.music)
 	_play_audio($Audio/Ambience, current_location.ambience)

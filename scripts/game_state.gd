@@ -5,9 +5,17 @@ signal changed
 const SAVE_VERSION = 3
 const SAVE_PATH = "user://story_day1_ink_v3.json"
 const LOCATION_IDS = ["dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary"]
-const LOCATION_WIDTHS = {"dorm": 1600, "courtyard": 1600, "garden": 3164, "cloister": 3273, "cloister_east": 3273, "cloister_north": 3273, "cloister_west": 3273, "kitchen": 2260, "refectory": 2254, "chapter_hall": 1918, "library": 2219, "infirmary": 2920}
+const LOCATION_WIDTHS = {"dorm": 1600, "courtyard": 3000, "garden": 3164, "cloister": 3273, "cloister_east": 3273, "cloister_north": 3273, "cloister_west": 3273, "kitchen": 2260, "refectory": 2254, "chapter_hall": 1918, "library": 2219, "infirmary": 2920}
 const FLAG_IDS = ["dorm_wakeup_done", "courtyard_intro_seen", "oats_request_known", "oats_question_asked", "cloister_intro_seen"]
 const PERIOD_NAMES = ["晨祷", "三时祷", "九时祷", "晚祷", "终祷"]
+const LOCATION_NAMES = {
+	"dorm": "见习生宿舍", "courtyard": "修道院广场",
+	"garden": "牲畜棚和菜园", "cloister": "回廊（南）",
+	"cloister_east": "回廊（东）", "cloister_north": "回廊（北）",
+	"cloister_west": "回廊（西）", "kitchen": "厨房",
+	"refectory": "餐厅", "chapter_hall": "章会厅",
+	"library": "藏书室", "infirmary": "病舍"
+}
 const OBSERVATION_IDS = ["bed", "desk", "cross", "chest"]
 const CHOICE_VALUES = {
 	"wake_response": ["spoken", "silent"],
@@ -17,10 +25,13 @@ const CHOICE_VALUES = {
 const OBSERVATION_NAMES = {"bed": "床", "desk": "书桌", "cross": "十字架", "chest": "床尾的箱子"}
 
 const STORY_PATH = "res://story/day1.json"
-# This exact append-only build preserves all original knots and their saved paths.
-# Future script changes must be verified before adding another compatibility pair.
-const APPENDED_STORY_HASH = "b833b3169f002ed766b05877d6e71aefce59e6ea591e717d364cb4ab401578f9"
-const PREVIOUS_STORY_HASH = "e1ec322d7a3d12195909c66306b4aa87239b38751bc38cca6e7e0ff5f993ff50"
+# This build only renames courtyard title tags; knots and saved paths are unchanged.
+# Keep the two verified earlier builds compatible with existing saves.
+const CURRENT_STORY_HASH = "5feadc551972b9a43c9d780bb4cee2c4f6a68b46e7821de0dfa52ea350a2b7e5"
+const COMPATIBLE_STORY_HASHES = [
+	"b833b3169f002ed766b05877d6e71aefce59e6ea591e717d364cb4ab401578f9",
+	"e1ec322d7a3d12195909c66306b4aa87239b38751bc38cca6e7e0ff5f993ff50"
+]
 var story: InkStory
 var compiled_story: String = ""
 
@@ -44,6 +55,16 @@ func has_flag(id: String) -> bool:
 
 func period_name() -> String:
 	return PERIOD_NAMES[clampi(period_index, 0, PERIOD_NAMES.size() - 1)]
+
+func location_name() -> String:
+	return LOCATION_NAMES.get(location_id, location_id)
+
+func current_main_quest() -> Dictionary:
+	if not has_flag("dorm_wakeup_done"):
+		return {"title": "起床", "description": "回应扬，准备参加晨祷。", "status": "进行中"}
+	if has_flag("oats_request_known"):
+		return {"title": "前往章会厅", "description": "将燕麦短缺的消息告诉扬。", "status": "进行中"}
+	return {"title": "前往章会厅", "description": "与扬会合，了解今日安排。", "status": "进行中"}
 
 func meets(required_flags: Array) -> bool:
 	for id in required_flags:
@@ -143,7 +164,7 @@ func _valid_save(value: Variant) -> bool:
 		compiled_story = FileAccess.get_file_as_string(STORY_PATH)
 	var current_hash = compiled_story.sha256_text()
 	var saved_hash = value.get("story_hash")
-	var compatible_append = current_hash == APPENDED_STORY_HASH and saved_hash == PREVIOUS_STORY_HASH
+	var compatible_append = current_hash == CURRENT_STORY_HASH and saved_hash in COMPATIBLE_STORY_HASHES
 	if saved_hash != current_hash and not compatible_append:
 		return false
 	var ink_state = JSON.parse_string(state_text)

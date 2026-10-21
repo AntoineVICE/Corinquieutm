@@ -8,13 +8,28 @@ const POINTER_DIRECTION := 270.0
 const TURN_TIME := 0.55
 
 @onready var dial: TextureRect = $Dial
+@onready var period_label: Label = $PeriodName
+@onready var location_label: Label = $LocationName
+@onready var quest_title: Label = $QuestTitle
+@onready var quest_description: Label = $QuestDescription
+@onready var quest_status: Label = $QuestStatus
 
 var turn_tween: Tween
 
 
 func _ready() -> void:
-	GameState.changed.connect(apply_period)
+	GameState.changed.connect(refresh)
+	refresh()
+
+
+func refresh() -> void:
 	apply_period()
+	period_label.text = GameState.period_name()
+	location_label.text = GameState.location_name()
+	var quest := GameState.current_main_quest()
+	quest_title.text = quest["title"]
+	quest_description.text = quest["description"]
+	quest_status.text = quest["status"]
 
 
 func apply_period() -> void:

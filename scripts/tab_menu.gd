@@ -8,21 +8,6 @@ const TAB_TEX := preload("res://assets/ui/book_tab.png")
 const TAB_TEX_SELECTED := preload("res://assets/ui/book_tab_selected.png")
 const BOUNCE_PIXELS := 7.0
 const BOUNCE_TIME := 0.18
-const LOCATION_NAMES := {
-	"dorm": "见习生宿舍",
-	"courtyard": "修道院外观（外院）",
-	"garden": "牲畜棚和菜园",
-	"cloister": "回廊（南）",
-	"cloister_east": "回廊（东）",
-	"cloister_north": "回廊（北）",
-	"cloister_west": "回廊（西）",
-	"kitchen": "厨房",
-	"refectory": "餐厅",
-	"chapter_hall": "章会厅",
-	"library": "藏书室",
-	"infirmary": "病舍",
-}
-
 @onready var tab_tasks: TextureRect = $Tabs/Tasks
 @onready var tab_map: TextureRect = $Tabs/Map
 @onready var tasks_page: Control = $Pages/Tasks
@@ -129,8 +114,7 @@ func _detail_text() -> String:
 
 
 func _map_text() -> String:
-	var display: String = LOCATION_NAMES.get(GameState.location_id, GameState.location_id)
-	return "[font_size=20][color=#655b4d]当前所在[/color][/font_size]\n" + display
+	return "[font_size=20][color=#655b4d]当前所在[/color][/font_size]\n" + GameState.location_name()
 
 
 func _select_tab(index: int) -> void:

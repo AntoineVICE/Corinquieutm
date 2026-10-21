@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/time_dial.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/ui/time_dial.png" id="2_dial"]
 [ext_resource type="Texture2D" path="res://assets/ui/time_dial_pointer.png" id="3_pointer"]
+[ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="4_theme"]
+[ext_resource type="Texture2D" path="res://assets/ui/quest_icon.png" id="5_quest"]
+
+[sub_resource type="AtlasTexture" id="QuestIcon"]
+atlas = ExtResource("5_quest")
+region = Rect2(187, 29, 426, 523)
 
 [node name="TimeDial" type="Control"]
 layout_mode = 0
@@ -33,3 +39,90 @@ mouse_filter = 2
 texture = ExtResource("3_pointer")
 expand_mode = 1
 stretch_mode = 0
+
+[node name="PeriodName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 29.0
+offset_right = 256.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme = ExtResource("4_theme")
+theme_override_colors/font_color = Color(0.914, 0.851, 0.725, 1)
+theme_override_colors/font_outline_color = Color(0.141, 0.114, 0.094, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "晨祷"
+vertical_alignment = 1
+
+[node name="LocationName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 113.0
+offset_right = 319.0
+offset_bottom = 144.0
+mouse_filter = 2
+theme = ExtResource("4_theme")
+theme_override_colors/font_color = Color(0.914, 0.851, 0.725, 1)
+theme_override_colors/font_outline_color = Color(0.141, 0.114, 0.094, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "见习生宿舍"
+vertical_alignment = 1
+
+[node name="QuestIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 187.0
+offset_right = 19.0
+offset_bottom = 218.0
+mouse_filter = 2
+texture = SubResource("QuestIcon")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="QuestTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 184.0
+offset_right = 195.0
+offset_bottom = 220.0
+mouse_filter = 2
+theme = ExtResource("4_theme")
+theme_override_colors/font_color = Color(0.914, 0.851, 0.725, 1)
+theme_override_colors/font_outline_color = Color(0.141, 0.114, 0.094, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "前往章会厅"
+vertical_alignment = 1
+
+[node name="QuestDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 221.0
+offset_right = 209.0
+offset_bottom = 273.0
+mouse_filter = 2
+theme = ExtResource("4_theme")
+theme_override_colors/font_color = Color(0.914, 0.851, 0.725, 1)
+theme_override_colors/font_outline_color = Color(0.141, 0.114, 0.094, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "与扬会合，了解今日安排。"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="QuestStatus" type="Label" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 278.0
+offset_right = 79.0
+offset_bottom = 309.0
+mouse_filter = 2
+theme = ExtResource("4_theme")
+theme_override_colors/font_color = Color(0.914, 0.851, 0.725, 1)
+theme_override_colors/font_outline_color = Color(0.141, 0.114, 0.094, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "进行中"
+vertical_alignment = 1

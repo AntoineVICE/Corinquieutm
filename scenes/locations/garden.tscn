@@ -41,7 +41,7 @@ position = Vector2(460, 660)
 [node name="ToCourtyard" parent="Interactions" instance=ExtResource("2")]
 position = Vector2(385, 680)
 interaction_id = "to_courtyard"
-display_name = "返回外院"
+display_name = "返回修道院广场"
 kind = 1
 target_location = "courtyard"
 target_spawn = "FromGarden"

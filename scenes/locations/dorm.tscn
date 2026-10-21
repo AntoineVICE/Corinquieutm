@@ -74,7 +74,7 @@ marker_offset = Vector2(-45, -220)
 [node name="ToCourtyard" parent="Interactions" instance=ExtResource("3")]
 position = Vector2(1185, 654)
 interaction_id = "to_courtyard"
-display_name = "前往外院"
+display_name = "前往修道院广场"
 kind = 1
 target_location = "courtyard"
 target_spawn = "FromDorm"
