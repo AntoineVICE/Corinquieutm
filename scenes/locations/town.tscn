@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/location.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/placeholder_background.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="3"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/town.png" id="4"]
+[ext_resource type="Script" path="res://scripts/world/ground_region.gd" id="ground"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/henry.png" id="npc_henry"]
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/lucia.png" id="npc_lucia"]
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/dorota.png" id="npc_dorota"]
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/pavel.png" id="npc_pavel"]
+[ext_resource type="Texture2D" path="res://assets/characters/npcs/vit.png" id="npc_vit"]
+
+[node name="Town" type="Node2D"]
+script = ExtResource("1")
+display_name = "小镇"
+background_texture = ExtResource("4")
+camera_right = 4999
+
+[node name="Placeholder" type="Node2D" parent="."]
+visible = false
+z_index = -20
+script = ExtResource("2")
+exterior = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(2500, 246)
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("4")
+
+[node name="Spawns" type="Node2D" parent="."]
+[node name="Start" type="Marker2D" parent="Spawns"]
+position = Vector2(300, 460)
+[node name="FromCourtyard" type="Marker2D" parent="Spawns"]
+position = Vector2(300, 460)
+
+[node name="Interactions" type="Node2D" parent="."]
+[node name="ToCourtyard" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(4870, 460)
+interaction_id = "to_courtyard"
+display_name = "返回修道院广场"
+kind = 1
+target_location = "courtyard"
+target_spawn = "FromTown"
+marker_offset = Vector2(0, -170)
+
+[node name="Henry" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(700, 460)
+interaction_id = "henry"
+display_name = "铁匠亨利"
+dialogue_id = "henry_d1"
+portrait_texture = ExtResource("npc_henry")
+placeholder_person = true
+
+[node name="Lucia" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(1400, 460)
+interaction_id = "lucia"
+display_name = "卢齐娅"
+dialogue_id = "lucia_d1"
+portrait_texture = ExtResource("npc_lucia")
+placeholder_person = true
+
+[node name="Dorota" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(2100, 460)
+interaction_id = "dorota"
+display_name = "多罗塔"
+dialogue_id = "dorota_d1"
+portrait_texture = ExtResource("npc_dorota")
+placeholder_person = true
+
+[node name="Pavel" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(2800, 460)
+interaction_id = "pavel"
+display_name = "帕维尔神父"
+dialogue_id = "pavel_d1"
+portrait_texture = ExtResource("npc_pavel")
+placeholder_person = true
+
+[node name="Vit" parent="Interactions" instance=ExtResource("3")]
+position = Vector2(3500, 460)
+interaction_id = "vit"
+display_name = "维特"
+dialogue_id = "vit_d1"
+portrait_texture = ExtResource("npc_vit")
+placeholder_person = true
+
+[node name="Foreground" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(2500, 246)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Walkable" type="Polygon2D" parent="Ground"]
+script = ExtResource("ground")
+polygon = PackedVector2Array(60, 430, 4940, 430, 4940, 490, 60, 490)

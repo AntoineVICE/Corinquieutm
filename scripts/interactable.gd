@@ -10,7 +10,7 @@ enum Kind { DIALOGUE, EXIT }
 @export var display_name: String = "交互点"
 @export var kind: Kind = Kind.DIALOGUE
 @export var dialogue_id: String = ""
-@export_enum("dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary") var target_location: String = "dorm"
+@export_enum("dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary", "town") var target_location: String = "dorm"
 @export var target_spawn: String = "Start"
 @export var interaction_distance: float = 100.0
 @export var portrait_texture: Texture2D

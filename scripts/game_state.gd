@@ -4,8 +4,8 @@ signal changed
 
 const SAVE_VERSION = 3
 const SAVE_PATH = "user://story_day1_ink_v3.json"
-const LOCATION_IDS = ["dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary"]
-const LOCATION_WIDTHS = {"dorm": 1600, "courtyard": 3000, "garden": 3164, "cloister": 3273, "cloister_east": 3273, "cloister_north": 3273, "cloister_west": 3273, "kitchen": 2260, "refectory": 2254, "chapter_hall": 1918, "library": 2219, "infirmary": 2920}
+const LOCATION_IDS = ["dorm", "courtyard", "garden", "cloister", "cloister_east", "cloister_north", "cloister_west", "kitchen", "refectory", "chapter_hall", "library", "infirmary", "town"]
+const LOCATION_WIDTHS = {"dorm": 1600, "courtyard": 3000, "garden": 3164, "cloister": 3273, "cloister_east": 3273, "cloister_north": 3273, "cloister_west": 3273, "kitchen": 2260, "refectory": 2254, "chapter_hall": 1918, "library": 2219, "infirmary": 2920, "town": 4999}
 const FLAG_IDS = ["dorm_wakeup_done", "courtyard_intro_seen", "oats_request_known", "oats_question_asked", "cloister_intro_seen"]
 const PERIOD_NAMES = ["晨祷", "三时祷", "九时祷", "晚祷", "终祷"]
 const LOCATION_NAMES = {
@@ -14,7 +14,8 @@ const LOCATION_NAMES = {
 	"cloister_east": "回廊（东）", "cloister_north": "回廊（北）",
 	"cloister_west": "回廊（西）", "kitchen": "厨房",
 	"refectory": "餐厅", "chapter_hall": "章会厅",
-	"library": "藏书室", "infirmary": "病舍"
+	"library": "藏书室", "infirmary": "病舍",
+	"town": "小镇"
 }
 const OBSERVATION_IDS = ["bed", "desk", "cross", "chest"]
 const CHOICE_VALUES = {
@@ -25,10 +26,11 @@ const CHOICE_VALUES = {
 const OBSERVATION_NAMES = {"bed": "床", "desk": "书桌", "cross": "十字架", "chest": "床尾的箱子"}
 
 const STORY_PATH = "res://story/day1.json"
-# This build only renames courtyard title tags; knots and saved paths are unchanged.
-# Keep the two verified earlier builds compatible with existing saves.
-const CURRENT_STORY_HASH = "5feadc551972b9a43c9d780bb4cee2c4f6a68b46e7821de0dfa52ea350a2b7e5"
+# This build adds the village (town) day-1 dialogues; knots and saved paths are unchanged.
+# Keep the three verified earlier builds compatible with existing saves.
+const CURRENT_STORY_HASH = "37cbf369dd76ad38683a7b0b8da081dc8d8397cb2c9f1f02e6c1d3f45ae5d3d7"
 const COMPATIBLE_STORY_HASHES = [
+	"5feadc551972b9a43c9d780bb4cee2c4f6a68b46e7821de0dfa52ea350a2b7e5",
 	"b833b3169f002ed766b05877d6e71aefce59e6ea591e717d364cb4ab401578f9",
 	"e1ec322d7a3d12195909c66306b4aa87239b38751bc38cca6e7e0ff5f993ff50"
 ]

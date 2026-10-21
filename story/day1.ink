@@ -25,6 +25,16 @@ VAR observed_medicine_cabinet = false
 VAR cloister_intro_seen = false
 VAR ambrose_met = false
 VAR ambrose_response = ""
+// 小镇（村庄）d1 对话变量
+VAR talked_to_dorota = false
+VAR henry_talked = false
+VAR lucia_met = false
+VAR lucia_asked_why = false
+VAR lucia_asked_marina = false
+VAR dorota_asked_why = false
+VAR dorota_asked_take = false
+VAR pavel_talked = false
+VAR vit_talked = false
 
 // Inky 中从宿舍开场试玩；游戏通过相应 knot 进入。
 -> dorm_wakeup
@@ -35,3 +45,8 @@ INCLUDE garden.ink
 INCLUDE kitchen.ink
 INCLUDE infirmary.ink
 INCLUDE cloister_south.ink
+INCLUDE henry_d1.ink
+INCLUDE lucia_d1.ink
+INCLUDE dorota_d1.ink
+INCLUDE pavel_d1.ink
+INCLUDE vit_d1.ink
