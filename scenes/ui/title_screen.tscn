@@ -1,0 +1,236 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_script"]
+[ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/ui/parchment.png" id="3_parchment"]
+[ext_resource type="Texture2D" path="res://assets/ui/title_logo.png" id="4_logo"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_option.png" id="5_option"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_option_selected.png" id="6_option_selected"]
+[ext_resource type="Texture2D" path="res://assets/ui/title_frame.png" id="7_frame"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Parchment" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_parchment")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 67.0
+offset_right = 1120.0
+offset_bottom = 208.0
+mouse_filter = 2
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="PortraitArea" type="Control" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 720.0
+
+[node name="Portrait" type="TextureRect" parent="PortraitArea"]
+layout_mode = 0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewGame" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 253.0
+offset_right = 1087.0
+offset_bottom = 298.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_option")
+texture_hover = ExtResource("6_option_selected")
+texture_pressed = ExtResource("6_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Buttons/NewGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "开始新游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 332.0
+offset_right = 1087.0
+offset_bottom = 377.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_option")
+texture_hover = ExtResource("6_option_selected")
+texture_pressed = ExtResource("6_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Buttons/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "继续游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 411.0
+offset_right = 1087.0
+offset_bottom = 456.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_option")
+texture_hover = ExtResource("6_option_selected")
+texture_pressed = ExtResource("6_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Buttons/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "制作人名单"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="Buttons"]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 490.0
+offset_right = 1087.0
+offset_bottom = 535.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_option")
+texture_hover = ExtResource("6_option_selected")
+texture_pressed = ExtResource("6_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Buttons/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 20
+text = "退出游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_frame")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="CreditsPanel" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.04, 0.03, 0.55)
+
+[node name="Panel" type="PanelContainer" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -170.0
+offset_right = 240.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="Content" type="VBoxContainer" parent="CreditsPanel/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="CreditsPanel/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "制作人名单"
+horizontal_alignment = 1
+
+[node name="Lines" type="Label" parent="CreditsPanel/Panel/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "制作人：待补"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="CreditsPanel/Panel/Content"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "关闭"
