@@ -34,6 +34,7 @@ func _ready() -> void:
 	_wire_button(credits_button, _open_credits)
 	_wire_button(quit_button, func() -> void: get_tree().quit())
 	$CreditsPanel/Panel/Content/Close.pressed.connect(_close_credits)
+	$PortraitArea.gui_input.connect(_on_portrait_area_gui_input)
 	_refresh_continue()
 	credits_text.text = "\n".join(CREDITS)
 	_set_random_portrait()
