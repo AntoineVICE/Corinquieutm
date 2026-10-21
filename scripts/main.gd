@@ -1,6 +1,8 @@
 extends Node2D
 ## Persistent shell: replace only LocationSlot; keep player, HUD and audio alive.
 
+const TITLE_SCENE := "res://scenes/ui/title_screen.tscn"
+
 const LOCATIONS = {
 	"dorm": "res://scenes/locations/dorm.tscn",
 	"courtyard": "res://scenes/locations/courtyard.tscn",
@@ -13,7 +15,8 @@ const LOCATIONS = {
 	"refectory": "res://scenes/locations/refectory.tscn",
 	"chapter_hall": "res://scenes/locations/chapter_hall.tscn",
 	"library": "res://scenes/locations/library.tscn",
-	"infirmary": "res://scenes/locations/infirmary.tscn"
+	"infirmary": "res://scenes/locations/infirmary.tscn",
+	"town": "res://scenes/locations/town.tscn"
 }
 
 @export var auto_save_enabled: bool = true
@@ -38,6 +41,7 @@ func _ready() -> void:
 	hud.save_requested.connect(_manual_save)
 	hud.load_requested.connect(_manual_load)
 	hud.restart_requested.connect(_restart)
+	hud.exit_requested.connect(_exit_to_title)
 	hud.dialogue_finished.connect(_after_dialogue)
 	var restored = false
 	var bad_save = false
@@ -274,3 +278,11 @@ func _restart() -> void:
 	auto_save_enabled = true
 	await change_location("dorm", "Start", false, true)
 	# The wake-up conversation now owns focus; avoid overlaying it with a toast.
+
+
+func _exit_to_title() -> void:
+	if transitioning:
+		return
+	hud.close_panels()
+	GameState.save_game()
+	get_tree().change_scene_to_file(TITLE_SCENE)

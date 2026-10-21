@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2"]
 [ext_resource type="Texture2D" path="res://assets/ui/exploration_frame.png" id="3_frame"]
 [ext_resource type="Texture2D" path="res://ui/dialogue_paper.tres" id="4_paper"]
 [ext_resource type="PackedScene" path="res://scenes/ui/tab_menu.tscn" id="5_tabmenu"]
 [ext_resource type="PackedScene" path="res://scenes/ui/time_dial.tscn" id="6_timedial"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_option.png" id="7_option"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_option_selected.png" id="8_option_selected"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 20
@@ -119,21 +121,155 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 16
 text = "结束交谈、切换地点后自动保存。\n存档记录进度，不记录对白中的某一行。"
-[node name="Resume" type="Button" parent="Screen/Pause/Content"]
+[node name="Resume" type="TextureButton" parent="Screen/Pause/Content"]
 layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
 text = "继续探索"
-[node name="Fullscreen" type="Button" parent="Screen/Pause/Content"]
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fullscreen" type="TextureButton" parent="Screen/Pause/Content"]
 layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Fullscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
 text = "切换为窗口 / F11"
-[node name="Save" type="Button" parent="Screen/Pause/Content"]
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Save" type="TextureButton" parent="Screen/Pause/Content"]
 layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Save"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
 text = "保存进度"
-[node name="Load" type="Button" parent="Screen/Pause/Content"]
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Load" type="TextureButton" parent="Screen/Pause/Content"]
 layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Load"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
 text = "读取存档"
-[node name="Restart" type="Button" parent="Screen/Pause/Content"]
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="TextureButton" parent="Screen/Pause/Content"]
 layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
 text = "重新开始第一天…"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="Screen/Pause/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(347, 45)
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_option")
+texture_hover = ExtResource("8_option_selected")
+texture_pressed = ExtResource("8_option_selected")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Screen/Pause/Content/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 20
+text = "退出至主菜单"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Fade" type="ColorRect" parent="Screen"]
 layout_mode = 0

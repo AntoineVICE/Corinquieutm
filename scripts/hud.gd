@@ -5,6 +5,7 @@ signal save_requested
 signal load_requested
 signal restart_requested
 signal fullscreen_requested
+signal exit_requested
 signal dialogue_finished(dialogue_id: String)
 
 @onready var dialogue: Control = $Screen/Dialogue
@@ -23,6 +24,8 @@ var dialogue_transitioning: bool = false
 var slide_progress: float = 1.0
 var dialogue_tween: Tween
 
+const HOVER_TEXT := Color(0.96, 0.93, 0.86)
+
 func _ready() -> void:
 	# Fade the painted world while the illuminated border stays still above it.
 	$Screen.move_child($Screen/Fade, 0)
@@ -37,10 +40,29 @@ func _ready() -> void:
 	$Screen/Pause/Content/Save.pressed.connect(func(): save_requested.emit())
 	$Screen/Pause/Content/Load.pressed.connect(func(): load_requested.emit())
 	$Screen/Pause/Content/Restart.pressed.connect(_confirm_restart)
+	$Screen/Pause/Content/Exit.pressed.connect(func(): exit_requested.emit())
 	$RestartConfirm.confirmed.connect(func(): restart_requested.emit())
+	_wire_pause_button_labels()
 
 func set_fullscreen_state(fullscreen: bool) -> void:
-	$Screen/Pause/Content/Fullscreen.text = "切换为窗口 / F11" if fullscreen else "切换为全屏 / F11"
+	$Screen/Pause/Content/Fullscreen.get_node("Label").text = "切换为窗口 / F11" if fullscreen else "切换为全屏 / F11"
+
+
+func _wire_pause_button_labels() -> void:
+	# Pause buttons are option-strip textures; switch the label to a light ink
+	# while hovering so it stays readable on the darkened selected strip.
+	for name in ["Resume", "Fullscreen", "Save", "Load", "Restart", "Exit"]:
+		var button: TextureButton = $Screen/Pause/Content.get_node(name)
+		var label: Label = button.get_node("Label")
+		button.mouse_entered.connect(_pause_label_hover.bind(label, true))
+		button.mouse_exited.connect(_pause_label_hover.bind(label, false))
+
+
+func _pause_label_hover(label: Label, entered: bool) -> void:
+	if entered:
+		label.add_theme_color_override("font_color", HOVER_TEXT)
+	else:
+		label.remove_theme_color_override("font_color")
 
 func is_dialogue_open() -> bool:
 	return not active_dialogue_id.is_empty()
