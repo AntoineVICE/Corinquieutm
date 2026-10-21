@@ -10,12 +10,7 @@ const PORTRAIT_CENTER_X := 313.0
 const PORTRAIT_BOTTOM := 670.0
 const HOVER_TEXT := Color(0.96, 0.93, 0.86)
 
-const CREDITS := [
-	"制作人：待补",
-	"程序：待补",
-	"美术：待补",
-	"剧本：待补",
-]
+const CREDITS: Array[String] = []
 
 @onready var portrait: TextureRect = $PortraitArea/Portrait
 @onready var credits_panel: Control = $CreditsPanel
@@ -24,6 +19,7 @@ const CREDITS := [
 @onready var continue_game: TextureButton = $Buttons/Continue
 @onready var credits_button: TextureButton = $Buttons/Credits
 @onready var quit_button: TextureButton = $Buttons/Quit
+@onready var saved_at: Label = $Buttons/SavedAt
 
 var boxes: Dictionary = {}
 var pool: Array[String] = []
@@ -65,6 +61,15 @@ func _refresh_continue() -> void:
 	var has_save := FileAccess.file_exists(GameState.SAVE_PATH)
 	continue_game.disabled = not has_save
 	continue_game.modulate.a = 1.0 if has_save else 0.4
+	saved_at.visible = has_save
+	if has_save:
+		saved_at.text = _format_saved_at(FileAccess.get_modified_time(GameState.SAVE_PATH))
+
+
+func _format_saved_at(unix_time: int) -> String:
+	var bias: int = int(Time.get_time_zone_from_system().get("bias", 0))
+	var date := Time.get_datetime_dict_from_unix_time(unix_time + bias * 60)
+	return "上次存档 %d月%d日 %02d:%02d" % [date["month"], date["day"], date["hour"], date["minute"]]
 
 
 func _set_random_portrait() -> void:
