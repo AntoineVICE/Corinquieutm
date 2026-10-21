@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="noise"/>
+      <feColorMatrix in="noise" values="0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 .10 0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <style>
+      .wall{fill:none;stroke:#4c3a28;stroke-width:10;stroke-linejoin:round;stroke-linecap:round}
+      .room{fill:#eadbb8;stroke:#4c3a28;stroke-width:6;stroke-linejoin:round}
+      .minor{fill:none;stroke:#745c3f;stroke-width:3}
+      .path{fill:none;stroke:#8a704e;stroke-width:4;stroke-dasharray:4 12;stroke-linecap:round}
+      .green{fill:#cad0a2;stroke:#556044;stroke-width:4}
+      .blue{fill:#a8c4c1;stroke:#556b68;stroke-width:3}
+      .label{font-family:'Noto Serif CJK SC','Source Han Serif SC',serif;font-size:19px;font-weight:700;fill:#35291d;text-anchor:middle;paint-order:stroke;stroke:#eadbb8;stroke-width:5px;stroke-linejoin:round}
+      .small{font-size:15px}
+      .title{font-size:31px;letter-spacing:5px}
+    </style>
+  </defs>
+  <rect x="10" y="10" width="980" height="880" rx="18" fill="#eadbb8" stroke="#6d5639" stroke-width="5" filter="url(#paper)"/>
+  <text class="label title" x="500" y="58">修道院地图</text>
+  <path class="wall" d="M82 183 L182 93 L703 78 L882 175 L918 660 L832 803 L135 814 L64 720 Z"/>
+
+  <!-- 客舍与入口 -->
+  <rect class="room" x="78" y="225" width="118" height="92"/>
+  <path class="minor" d="M94 250h38v42H94m50-42h36v42h-36"/>
+  <text class="label" x="137" y="342">客舍</text>
+  <path class="path" d="M126 318 C140 395 94 466 78 547"/>
+  <path class="wall" d="M64 520h42M64 590h42"/>
+  <text class="label small" x="114" y="568">入口</text>
+
+  <!-- 主体建筑 -->
+  <rect class="room" x="248" y="150" width="476" height="104" rx="8"/>
+  <path class="minor" d="M302 184h95m0 34h-95m156-34h95m0 34h-95"/>
+  <path class="room" d="M724 150h52a52 52 0 0 1 0 104h-52z"/>
+  <path class="minor" d="M744 202h29m-14-15v31"/>
+  <text class="label" x="505" y="212">教堂</text>
+
+  <rect class="room" x="250" y="254" width="476" height="352"/>
+  <rect x="338" y="322" width="300" height="212" fill="#d6d3a6" stroke="#4c3a28" stroke-width="6"/>
+  <path class="minor" d="M365 350h246v157H365zM488 350v157M365 428h246"/>
+  <circle class="blue" cx="488" cy="428" r="20"/>
+  <text class="label" x="488" y="457">中庭</text>
+  <text class="label small" x="488" y="286">回廊（北）</text>
+
+  <rect class="room" x="250" y="322" width="60" height="284"/>
+  <circle class="minor" cx="281" cy="361" r="12"/><circle class="minor" cx="307" cy="361" r="12"/>
+  <path class="minor" d="M274 500h38v45h-38"/>
+  <text class="label small" x="280" y="466">仓库</text>
+
+  <rect class="room" x="666" y="254" width="60" height="117"/>
+  <path class="minor" d="M675 276h42M675 294h42M676 320h17v32h-17m25-32h16v32h-16"/>
+  <text class="label small" x="696" y="345">圣器室</text>
+  <rect class="room" x="666" y="371" width="60" height="118"/>
+  <path class="minor" d="M675 388h17v31h-17m25-31h17v31h-17m-25 50h42"/>
+  <text class="label small" x="696" y="452">藏书室</text>
+  <rect class="room" x="666" y="489" width="60" height="117"/>
+  <path class="minor" d="M675 533h42m-21-23v46"/>
+  <text class="label small" x="696" y="582">章会厅</text>
+
+  <rect class="room" x="338" y="558" width="150" height="80"/>
+  <path class="minor" d="M358 572h42v46h-42m68-46h40v46h-40"/>
+  <text class="label small" x="414" y="628">厨房</text>
+  <rect class="room" x="488" y="558" width="150" height="80"/>
+  <path class="minor" d="M520 578h87M520 600h87"/>
+  <text class="label small" x="563" y="628">餐厅</text>
+
+  <!-- 外部建筑 -->
+  <rect class="room" x="752" y="452" width="112" height="122"/>
+  <path class="minor" d="M775 480h28v66h-28m40-66h28v66h-28"/>
+  <text class="label" x="808" y="603">病舍</text>
+  <rect class="room" x="788" y="190" width="92" height="245"/>
+  <path class="minor" d="M810 218h48M810 254h48M810 290h48M810 326h48M810 362h48M810 398h48"/>
+  <text class="label small" x="834" y="464">见习生宿舍</text>
+
+  <text class="label" x="166" y="695">修道院广场</text>
+  <rect class="green" x="350" y="670" width="138" height="82"/>
+  <path class="minor" d="M419 672v78M378 704h23v25h-23m58-25h24v25h-24"/>
+  <rect class="green" x="510" y="670" width="190" height="82"/>
+  <path class="minor" d="M530 690h150M530 714h150M550 678v64M588 678v64M626 678v64M664 678v64"/>
+  <text class="label small" x="525" y="781">牲畜棚和菜园</text>
+
+  <!-- 回廊标注放在建筑细节之上，保证缩小时仍清晰 -->
+  <text class="label small" x="324" y="430" transform="rotate(-90 324 430)">回廊（西）</text>
+  <text class="label small" x="652" y="430" transform="rotate(90 652 430)">回廊（东）</text>
+  <text class="label small" x="488" y="551">回廊（南）</text>
+
+  <!-- 北箭头 -->
+  <path d="M892 748l-14 40 14-8 14 8z" fill="#4c3a28"/>
+  <path class="minor" d="M892 781v45"/>
+  <text class="label small" x="892" y="850">北</text>
+</svg>

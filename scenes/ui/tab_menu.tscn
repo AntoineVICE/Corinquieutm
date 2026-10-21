@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/tab_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://ui/dialogue_theme.tres" id="2_theme"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" path="res://assets/ui/book_low.png" id="4_book_low"]
 [ext_resource type="Texture2D" path="res://assets/ui/book_top.png" id="5_book_top"]
 [ext_resource type="Texture2D" path="res://assets/ui/page_triangle.png" id="6_triangle"]
+[ext_resource type="Texture2D" path="res://assets/ui/maps/monastery_map.png" id="7_monastery_map"]
+[ext_resource type="Texture2D" path="res://assets/ui/maps/village_map.png" id="8_village_map"]
 
 [sub_resource type="Gradient" id="GradientFadeTop"]
 offsets = PackedFloat32Array(0, 1)
@@ -254,6 +256,28 @@ theme = ExtResource("2_theme")
 bbcode_enabled = true
 scroll_active = false
 
+[node name="MonasteryButton" type="Button" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 92.0
+offset_right = 870.0
+offset_bottom = 126.0
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 18
+text = "修道院"
+flat = true
+
+[node name="VillageButton" type="Button" parent="Pages/Map"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 92.0
+offset_right = 1093.0
+offset_bottom = 126.0
+theme = ExtResource("2_theme")
+theme_override_font_sizes/font_size = 18
+text = "马尔欣村"
+flat = true
+
 [node name="Frame" type="Panel" parent="Pages/Map"]
 layout_mode = 0
 offset_left = 673.0
@@ -262,3 +286,14 @@ offset_right = 1093.0
 offset_bottom = 520.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("MapFrame")
+
+[node name="MapImage" type="TextureRect" parent="Pages/Map/Frame"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 414.0
+offset_bottom = 388.0
+mouse_filter = 2
+texture = ExtResource("7_monastery_map")
+expand_mode = 1
+stretch_mode = 5

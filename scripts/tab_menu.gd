@@ -6,6 +6,8 @@ signal closed
 
 const TAB_TEX := preload("res://assets/ui/book_tab.png")
 const TAB_TEX_SELECTED := preload("res://assets/ui/book_tab_selected.png")
+const MONASTERY_MAP := preload("res://assets/ui/maps/monastery_map.png")
+const VILLAGE_MAP := preload("res://assets/ui/maps/village_map.png")
 const BOUNCE_PIXELS := 7.0
 const BOUNCE_TIME := 0.18
 @onready var tab_tasks: TextureRect = $Tabs/Tasks
@@ -19,6 +21,9 @@ const BOUNCE_TIME := 0.18
 @onready var arrow: TextureRect = $Pages/Tasks/Arrow
 @onready var detail: RichTextLabel = $Pages/Tasks/Detail
 @onready var map_info: RichTextLabel = $Pages/Map/Info
+@onready var map_image: TextureRect = $Pages/Map/Frame/MapImage
+@onready var monastery_button: Button = $Pages/Map/MonasteryButton
+@onready var village_button: Button = $Pages/Map/VillageButton
 
 var active_tab: int = 0
 var hovered_tab: int = -1
@@ -37,12 +42,15 @@ func _ready() -> void:
 	tab_map.mouse_exited.connect(_on_tab_hover.bind(1, false))
 	tab_tasks.gui_input.connect(_on_tab_input.bind(0))
 	tab_map.gui_input.connect(_on_tab_input.bind(1))
+	monastery_button.pressed.connect(_select_map.bind(0))
+	village_button.pressed.connect(_select_map.bind(1))
 	log_text.get_v_scroll_bar().changed.connect(_refresh_scroll_hints)
 	var scrollbar := log_text.get_v_scroll_bar()
 	scrollbar.modulate.a = 0.0
 	scrollbar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	GameState.changed.connect(_on_state_changed)
 	_apply_tab_art()
+	_select_map(0)
 	_select_tab(0)
 
 
@@ -63,6 +71,7 @@ func open() -> void:
 		return
 	visible = true
 	_refresh_content()
+	_select_map(1 if GameState.location_id == "town" else 0)
 	_refresh_scroll_hints()
 	_apply_tab_art()
 
@@ -114,7 +123,14 @@ func _detail_text() -> String:
 
 
 func _map_text() -> String:
-	return "[font_size=20][color=#655b4d]当前所在[/color][/font_size]\n" + GameState.location_name()
+	return "[font_size=20][color=#655b4d]当前所在[/color][/font_size]\n" + GameState.location_name() + "\n\n[font_size=18][color=#655b4d]地图册[/color][/font_size]\n在右页选择修道院或马尔欣村地图。"
+
+
+func _select_map(index: int) -> void:
+	var show_village := index == 1
+	map_image.texture = VILLAGE_MAP if show_village else MONASTERY_MAP
+	monastery_button.disabled = not show_village
+	village_button.disabled = show_village
 
 
 func _select_tab(index: int) -> void:

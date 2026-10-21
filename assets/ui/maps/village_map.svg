@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="19" result="noise"/>
+      <feColorMatrix in="noise" values="0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 .10 0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <pattern id="field" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(25)"><path d="M0 0v20" stroke="#967c51" stroke-width="4"/></pattern>
+    <style>
+      .ink{fill:none;stroke:#4c3a28;stroke-width:7;stroke-linejoin:round;stroke-linecap:round}
+      .thin{fill:none;stroke:#745c3f;stroke-width:3;stroke-linejoin:round}
+      .building{fill:#eadbb8;stroke:#4c3a28;stroke-width:6}
+      .path{fill:none;stroke:#8a704e;stroke-width:4;stroke-dasharray:4 12;stroke-linecap:round}
+      .green{fill:#cad0a2;stroke:#556044;stroke-width:4}
+      .water{fill:none;stroke:#6f9798;stroke-width:18;stroke-linecap:round}
+      .label{font-family:'Noto Serif CJK SC','Source Han Serif SC',serif;font-size:19px;font-weight:700;fill:#35291d;text-anchor:middle;paint-order:stroke;stroke:#eadbb8;stroke-width:5px;stroke-linejoin:round}
+      .small{font-size:15px}.title{font-size:31px;letter-spacing:5px}
+    </style>
+  </defs>
+  <rect x="10" y="10" width="980" height="880" rx="18" fill="#eadbb8" stroke="#6d5639" stroke-width="5" filter="url(#paper)"/>
+  <text class="label title" x="500" y="58">马尔欣村地图</text>
+
+  <!-- 农田与林缘 -->
+  <path d="M65 113 L300 82 L377 160 L344 270 L94 250 Z" fill="url(#field)" stroke="#4c3a28" stroke-width="5"/>
+  <text class="label" x="215" y="183">坡地农田</text>
+  <path d="M696 96 L919 84 L957 178 L910 275 L690 244 Z" fill="url(#field)" stroke="#4c3a28" stroke-width="5"/>
+  <text class="label" x="821" y="182">坡地农田</text>
+  <g fill="#9ea87a" stroke="#4c3a28" stroke-width="3">
+    <path d="M405 93l-18 36h13v25h10v-25h13z"/><path d="M455 78l-22 44h16v28h11v-28h17z"/>
+    <path d="M512 91l-18 36h13v25h10v-25h13z"/><path d="M566 76l-22 44h16v30h11v-30h17z"/>
+    <path d="M622 94l-18 36h13v25h10v-25h13z"/>
+  </g>
+  <text class="label" x="514" y="184">林缘</text>
+
+  <!-- 道路 -->
+  <path d="M-20 392 C180 340 300 370 454 438 C612 507 785 526 1020 704" fill="none" stroke="#4c3a28" stroke-width="78"/>
+  <path d="M-20 392 C180 340 300 370 454 438 C612 507 785 526 1020 704" fill="none" stroke="#d9c79e" stroke-width="65"/>
+  <path class="thin" d="M-20 392 C180 340 300 370 454 438 C612 507 785 526 1020 704" stroke-dasharray="8 18"/>
+  <text class="label small" x="314" y="412" transform="rotate(18 314 412)">穿村道路</text>
+
+  <!-- 民居符号 -->
+  <g>
+    <g transform="translate(95 302)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(210 292)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(98 474)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(235 493)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(356 543)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(525 602)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+    <g transform="translate(650 631)"><rect class="building" width="84" height="60"/><path class="thin" d="M12 60v28h26V60m18 0v28h26V60"/></g>
+  </g>
+
+  <!-- 酒馆 -->
+  <rect class="building" x="315" y="278" width="120" height="88"/>
+  <path class="thin" d="M338 300h74v42h-74m37-42v42"/>
+  <text class="label" x="375" y="262">酒馆</text>
+
+  <!-- 堂区教堂与墓地 -->
+  <path class="building" d="M495 262h170v108h-55a52 52 0 0 1-52-52v-2a52 52 0 0 1 52-52z"/>
+  <path class="thin" d="M526 302h94m-94 28h94m11-46v65"/>
+  <text class="label" x="580" y="394">堂区教堂</text>
+  <rect class="green" x="681" y="254" width="106" height="116"/>
+  <g class="thin"><path d="M704 278v28m-10-18h20M748 278v28m-10-18h20M704 324v28m-10-18h20M748 324v28m-10-18h20"/></g>
+  <text class="label small" x="734" y="238">墓地</text>
+
+  <rect class="building" x="613" y="404" width="122" height="72"/>
+  <rect class="green" x="735" y="404" width="70" height="72"/>
+  <path class="thin" d="M748 418v45m18-45v45m18-45v45"/>
+  <text class="label small" x="709" y="503">神父住所和菜园</text>
+
+  <!-- 铁匠铺与牧场 -->
+  <rect class="building" x="812" y="335" width="128" height="92"/>
+  <path class="thin" d="M830 355h38v52h-38m55-36h35m-18-18v36"/>
+  <text class="label small" x="876" y="319">亨利的铁匠铺</text>
+  <path class="green" d="M820 500 Q920 476 963 533 L941 629 Q866 647 795 603 Z"/>
+  <path class="thin" d="M836 535l8 13m32-28l8 13m29 10l8 13m-78 38l8 13m47-17l8 13"/>
+  <text class="label" x="877" y="574">坡地牧场</text>
+
+  <!-- 村镇中心与溪边 -->
+  <text class="label" x="498" y="558">村镇中心</text>
+  <path class="water" d="M-20 766 C172 718 298 790 436 752 C564 716 701 739 812 821"/>
+  <path class="green" d="M20 650 Q205 612 354 691 Q451 747 540 790 L488 870 H20z"/>
+  <path class="thin" d="M40 688l9 15m34-30l9 15m40-7l9 15m38-22l9 15m42 12l9 15m45-18l9 15m42 7l9 15m45-2l9 15"/>
+  <text class="label" x="224" y="805">溪边草甸</text>
+
+  <path d="M930 740l-14 40 14-8 14 8z" fill="#4c3a28"/><path class="thin" d="M930 773v45"/>
+  <text class="label small" x="930" y="844">北</text>
+</svg>
